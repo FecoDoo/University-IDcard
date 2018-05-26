@@ -1,156 +1,260 @@
-ThinkPHP 5.1
-===============
+# Use ThinkPHP 5.0 create restful api
+---
+## API编写前的相关配置(参数过滤)
+* 在config/route.php中配置路由：实现api二级域名访问指定模块; 配置域名参数简写风格
+* 在api模块的Common.php中配置公共方法：
+    1. 初始化获取参数 
+    2. 验证参数是否合理
 
-ThinkPHP5.1对底层架构做了进一步的改进，减少依赖，其主要特性包括：
+* 在调用的控制器方法内(例如：User)，继承Common类
+* 涉及具体url参数的定义，可以查阅config目录下route.php文件
 
- + 采用容器统一管理对象
- + 支持Facade
- + 注解路由支持
- + 路由跨域请求支持
- + 配置和路由目录独立
- + 取消系统常量
- + 助手函数增强
- + 类库别名机制
- + 增加条件查询
- + 改进查询机制
- + 配置采用二级
- + 依赖注入完善
- + 中间件支持（V5.1.6+）
+---
+## Admin模块
+
+### 用户注册接口API
+
+* url请求(POST) : localhost/admin/register
+* post参数：user_id 、 user_pwd
+    
+    | user_id | user_pwd |
+    | :-: | :-: |
+    | string | string|
+    | 用户名 | 用户密码 |
+
+* 返回数据参考:
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": []
+}
+```
+
+### 用户找回密码接口API
+
+* url请求(POST) : localhost/user/findPwd
+* post参数：
 
 
-> ThinkPHP5的运行环境要求PHP5.6以上。
+    | user_id |
+    | :-: |
+    |string |
+    | 用户名 |
+
+* 返回数据参考:
+
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "password": [123141223]
+}
+``` 
+
+---
+## User登陆模块
+
+### 用户登陆接口API
+
+* url请求(POST) : localhost/user/login
+* post参数：user_id 、 user_pwd
+
+    | user_id | user_pwd |
+    | :-: | :-: |
+    | string | string|
+    | 用户名 | 用户密码 |
+
+* 返回数据参考:
+
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "user_id": 201619630301,
+    }
+}
+```
+
+### 用户修改密码接口API
+
+* url请求(POST) : localhost/user/changePwd
+* post参数：
 
 
-## 目录结构
+    | user_id | user_old_pwd | user_pwd |
+    | :-: | :-: | :-: |
+    | string | string | string |
+    | 用户名 | 旧密码 | 新密码 |
 
-初始的目录结构如下：
+* 返回数据参考:
 
-~~~
-www  WEB部署目录（或者子目录）
-├─application           应用目录
-│  ├─common             公共模块目录（可以更改）
-│  ├─module_name        模块目录
-│  │  ├─common.php      模块函数文件
-│  │  ├─controller      控制器目录
-│  │  ├─model           模型目录
-│  │  ├─view            视图目录
-│  │  └─ ...            更多类库目录
-│  │
-│  ├─command.php        命令行定义文件
-│  ├─common.php         公共函数文件
-│  └─tags.php           应用行为扩展定义文件
-│
-├─config                应用配置目录
-│  ├─module_name        模块配置目录
-│  │  ├─database.php    数据库配置
-│  │  ├─cache           缓存配置
-│  │  └─ ...            
-│  │
-│  ├─app.php            应用配置
-│  ├─cache.php          缓存配置
-│  ├─cookie.php         Cookie配置
-│  ├─database.php       数据库配置
-│  ├─log.php            日志配置
-│  ├─session.php        Session配置
-│  ├─template.php       模板引擎配置
-│  └─trace.php          Trace配置
-│
-├─route                 路由定义目录
-│  ├─route.php          路由定义
-│  └─...                更多
-│
-├─public                WEB目录（对外访问目录）
-│  ├─index.php          入口文件
-│  ├─router.php         快速测试文件
-│  └─.htaccess          用于apache的重写
-│
-├─thinkphp              框架系统目录
-│  ├─lang               语言文件目录
-│  ├─library            框架类库目录
-│  │  ├─think           Think类库包目录
-│  │  └─traits          系统Trait目录
-│  │
-│  ├─tpl                系统模板目录
-│  ├─base.php           基础定义文件
-│  ├─console.php        控制台入口文件
-│  ├─convention.php     框架惯例配置文件
-│  ├─helper.php         助手函数文件
-│  ├─phpunit.xml        phpunit配置文件
-│  └─start.php          框架入口文件
-│
-├─extend                扩展类库目录
-├─runtime               应用的运行时目录（可写，可定制）
-├─vendor                第三方类库目录（Composer依赖库）
-├─build.php             自动生成定义文件（参考）
-├─composer.json         composer 定义文件
-├─LICENSE.txt           授权说明文件
-├─README.md             README 文件
-├─think                 命令行入口文件
-~~~
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": {
+        "stuName":"吴鑫康",
+        "stuNo":"201619630322",
+        "stuDept":"国际学院",
+        "stuSex":"男",
+        "stuBirth":"1022",
+        "stuPwd":"12345"
+    }
+}
+``` 
 
-> router.php用于php自带webserver支持，可用于快速测试
-> 切换到public目录后，启动命令：php -S localhost:8888  router.php
-> 上面的目录结构和名称是可以改变的，这取决于你的入口文件和配置参数。
+### 用户查询个人信息接口API
 
-## 升级指导
+* url请求(POST):localhost/user/getInfo
+* POST参数:
 
-原有下面系统类库的命名空间需要调整：
+    | user_id |
+    | :-: |
+    | string |
+    | 学号 |
 
-* think\App      => think\facade\App （或者 App ）
-* think\Cache    => think\facade\Cache （或者 Cache ）
-* think\Config   => think\facade\Config （或者 Config ）
-* think\Cookie   => think\facade\Cookie （或者 Cookie ）
-* think\Debug    => think\facade\Debug （或者 Debug ）
-* think\Hook     => think\facade\Hook （或者 Hook ）
-* think\Lang     => think\facade\Lang （或者 Lang ）
-* think\Log      => think\facade\Log （或者 Log ）
-* think\Request  => think\facade\Request （或者 Request ）
-* think\Response => think\facade\Reponse （或者 Reponse ）
-* think\Route    => think\facade\Route （或者 Route ）
-* think\Session  => think\facade\Session （或者 Session ）
-* think\Url      => think\facade\Url （或者 Url ）
+* 返回数据参考
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": []
+}
+```
+---
+## 饭卡消费充值模块
 
-原有的配置文件config.php 拆分为app.php cache.php 等独立配置文件 放入config目录。
-原有的路由定义文件route.php 移动到route目录
+---
+## 图书管理模块
 
-## 命名规范
+### 新增文章接口API
 
-`ThinkPHP5`遵循PSR-2命名规范和PSR-4自动加载规范，并且注意如下规范：
+* 接口路由：Route::post('article', 'article/addArticle')
+* url请求(POST) : localhost/article
+* post参数： * 表示必须字段
 
-### 目录和文件
+    | time | token | article_uid | article_title | artcle_ctime | article_content |
+    | :-: | :-: | :-: | :-: | :-: | :-: |
+    | int | int | int |  string | int | string |
+    | 时间戳 | 验证身份 | 用户ID | 文章标题 | 发布时间 | 文章内容 |
 
-*   目录不强制规范，驼峰和小写+下划线模式均支持；
-*   类库、函数文件统一以`.php`为后缀；
-*   类的文件名均以命名空间定义，并且命名空间的路径和类库文件所在路径一致；
-*   类名和类文件名保持一致，统一采用驼峰法命名（首字母大写）；
+* 返回数据参考: (data为文章的id)
 
-### 函数和类、属性命名
-*   类的命名采用驼峰法，并且首字母大写，例如 `User`、`UserType`，默认不需要添加后缀，例如`UserController`应该直接命名为`User`；
-*   函数的命名使用小写字母和下划线（小写字母开头）的方式，例如 `get_client_ip`；
-*   方法的命名使用驼峰法，并且首字母小写，例如 `getUserName`；
-*   属性的命名使用驼峰法，并且首字母小写，例如 `tableName`、`instance`；
-*   以双下划线“__”打头的函数或方法作为魔法方法，例如 `__call` 和 `__autoload`；
+```json
+{
+    "code": 200,
+    "msg": "新增文章成功！",
+    "data": "5" 
+}
+``` 
 
-### 常量和配置
-*   常量以大写字母和下划线命名，例如 `APP_PATH`和 `THINK_PATH`；
-*   配置参数以小写字母和下划线命名，例如 `url_route_on` 和`url_convert`；
+### 文章列表接口API
 
-### 数据表和字段
-*   数据表和字段采用小写加下划线方式命名，并注意字段名不要以下划线开头，例如 `think_user` 表和 `user_name`字段，不建议使用驼峰和中文作为数据表字段命名。
+* 接口路由：Route::get('articles/:time/:token/:user_id/[:num]/[:page]', 'article/getArticles')
+* url请求(GET) : localhost/articles/1/1/2/2/1
+* post参数： * 表示必须字段
 
-## 参与开发
-请参阅 [ThinkPHP5 核心框架包](https://github.com/top-think/framework)。
+    | time | token | user_id | num | page |
+    | :-: | :-: | :-: | :-: | :-: |
+    | int | int | int |  int | int |
+    | 时间戳 | 验证身份 | 用户ID | 查询条数 | 查询页数 |
 
-## 版权信息
+* 返回数据参考: 
 
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
+```json
+{
+    "code": 200,
+    "msg": "查询成功！",
+    "data": {
+        "articles": [
+            {
+                "article_id": 1,
+                "article_ctime": 1523030209,
+                "article_title": "太平洋战争",
+                "user_nickname": "cici"
+            },
+            {
+                "article_id": 2,
+                "article_ctime": 1523030405,
+                "article_title": "太平洋战争",
+                "user_nickname": "cici"
+            }
+        ],
+        "page_num": 4
+    }
+}
+``` 
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
+### 获取文章详情接口API
 
-版权所有Copyright © 2006-2018 by ThinkPHP (http://thinkphp.cn)
+* 接口路由：Route::get('article/:time/:token/:article_id', 'article/articleDetail')
+* url请求(GET) : localhost/article/1/1/8
+* post参数： * 表示必须字段
 
-All rights reserved。
 
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
+    | time | token | article_id |
+    | :-: | :-: | :-: |
+    | int | int | int |
+    | *时间戳 | *验证身份 | *文章ID |
 
-更多细节参阅 [LICENSE.txt](LICENSE.txt)
+* 返回数据参考: 
+
+```json
+{
+    "code": 200,
+    "msg": "查询成功！",
+    "data": {
+        "article_id": 8,
+        "article_ctime": 1523159078,
+        "article_title": "那年那月",
+        "article_content": "<script>console.log('风华雪月，大漠孤烟直!')</script>",
+        "user_nickname": "cici"
+    }
+}
+``` 
+
+### 修改文章接口API
+
+* 接口路由：Route::put('article', 'article/updateArticle')
+* url请求(PUT) : localhost/article
+* put参数： * 表示必须字段  * x-www-form-urlencoded
+
+
+    | time | token | article_id | article_title | article_content |
+    | :-: | :-: | :-: | :-: | :-: |
+    | int | int | int | string | string |
+    | *时间戳 | *验证身份 | *文章ID | 文章标题 | 文章内容 |
+
+* 返回数据参考: 
+
+```json
+{
+    "code": 200,
+    "msg": "修改文章成功!",
+    "data": []
+}
+``` 
+
+### 删除文章接口API
+
+* 接口路由：Route::delete('article', 'article/deleteArticle')
+* url请求(PUT) : localhost/article
+* put参数： * 表示必须字段  * x-www-form-urlencoded
+
+
+    | time | token | article_id | 
+    | :-: | :-: | :-: |
+    | int | int | int |
+    | *时间戳 | *验证身份 | *文章ID |
+
+* 返回数据参考: 
+
+```json
+{
+    "code": 200,
+    "msg": "删除文章成功!",
+    "data": []
+}
+``` 

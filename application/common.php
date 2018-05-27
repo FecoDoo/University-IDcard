@@ -5,6 +5,7 @@ namespace app\api\controller;
 use app\api\controller\Validater;
 use think\Controller;
 use think\Request;
+use think\Db;
 
 class Common extends Controller
 {
@@ -59,7 +60,7 @@ class Common extends Controller
      */
     protected function checkExist($value)
     {
-        $id_res = table('Student')->where('StuNo', $value)->find();
+        $id_res = Db::table('idcard_student')->where('Sno', $value)->find();
         return $id_res;
     }
 

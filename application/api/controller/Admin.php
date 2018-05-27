@@ -1,31 +1,28 @@
 <?php
 namespace app\api\controller;
 
+use think\Db;
+
 class Admin extends Common
 {
     public $datas;
 
     /**
-     * [用户注册时接口请求的方法]
+     * [注册学生时接口请求的方法]
      * @return [null]
      */
     public function register()
     {
         $this->datas = $this->params;
-
-        //检测验证码
-        $this->checkCode($this->datas['user_id'], $this->datas['code']);
-
-        //检测用户名
+        //检测学号是否存在
         $this->checkRegisterUser();
-
         //将信息写入数据库
         $this->insertDataToDB();
     }
-    
+
     /**
-     * [用户找回密码接口请求的方法]
-     * @return [type] [description]
+     * [找回密码接口请求的方法]
+     * @return [json] [找回的密码string]
      */
     public function findPwd()
     {
@@ -40,36 +37,50 @@ class Admin extends Common
                 $res = Db::table('Student')->where('stuNo', $this->datas['user_id'])->find(['stuPwd' => $this->datas['user_pwd']]);
                 //5. 返回执行结果
                 if (!empty($res)) {
-                    $this->returnMsg(200, '密码成功找到', $res['stuPwd']);
+                    $this->returnMsg(200, 'Password finded', $res['stuPwd']);
                 } else {
-                    $this->returnMsg(400, '密码未找到!');
+                    $this->returnMsg(400, 'Password did not find');
                 }
             } else {
-                $this->returnMsg(400, '密码错误!');
+                $this->returnMsg(400, 'Password incorrect');
             }
         } else {
-            $this->returnMsg(400, '学号不存在');
+            $this->returnMsg(400, 'Student number does not exits');
         }
     }
     /**
      * [插入数据至数据库]
-     * @return [json] [注册行为产生的结果]
      */
     private function insertDataToDb()
     {
-        //删除user_id字段
-        unset($this->datas['user_id']);
-        $this->datas['user_rtime'] = time();
-        $this->datas['user_pwd'] = $this->datas['user_pwd'];
+        // 用户数据
+        $student = [
+            'Srtime' => date("Y-m-d H:i:s"),
+            'Sno' => $this->datas['user_id'],
+            'Sname' => $this->datas['user_name'],
+            'Spwd' => $this->datas['user_pwd'],
+            'Sdpt' => $this->datas['user_dept'],
+            'Sbirth' => $this->datas['user_birth'],
+            'Ssex' => $this->datas['user_sex'],
+        ];
 
         //往api_user表中插入用户数据
-        $res = table('user')->insert($this->datas);
+        $res = Db::table('idcard_student')->insert($student);
 
         //返回执行结果
         if (!empty($res)) {
-            $this->returnMsg(200, '用户注册成功！');
+            // 初始化校园卡
+            $card = [
+                'Sno' => $this->datas['user_id'],
+                'Cno' => $this->datas['user_id'],
+                'Charge' => 0,
+            ];
+            $res = Db::table('idcard_card')->insert($card);
+            if (!empty($res)) {
+                $this->returnMsg(200, 'Success');
+            }
         } else {
-            $this->returnMsg(400, '用户注册失败！');
+            $this->returnMsg(400, 'Failed');
         }
     }
 
@@ -81,13 +92,11 @@ class Admin extends Common
      */
     private function checkRegisterUser()
     {
-
         //检测是否已经存在于数据库
-        $this->checkExist($this->datas['user_id']);
-
-        //将数据存入数组对象 ( 为了给数据库添加用户信息 )
-        $this->datas['user_id'] = $this->datas['user_id'];
-
+        if (empty($this->checkExist($this->datas['user_id']))) {
+            return;
+        } else {
+            $this->returnMsg(400, 'Student id already exists');
+        }
     }
-
 }

@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>校园卡管理系统(用户)</title>
+    <!-- Bootstrap Styles-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="homepage.html">校园卡管理系统(用户)</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>个人信息</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i>退出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="homepage.html"><i class="fa fa-home"></i>主页</a>
+                    </li>
+                    <li>
+                        <a href="balance.html"><i class="fa fa-money"></i></i>余额</a>
+                    </li>
+                    <li>
+                        <a href="recharge.html"><i class="fa fa-jpy"></i>充值</a>
+                    </li>
+                    <li>
+                        <a href="consume.html"><i class="fa fa-jpy"></i>消费</a>
+                    </li>
+                    <li>
+                        <a href="schedule.html" class="active-menu"><i class="fa fa-dashboard"></i>课表</a>
+                    </li>
+                    <li>
+                        <a href="book.html"><i class="fa fa-book"></i>图书借阅</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            我的课程表
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>课时</th>
+                                                <th>星期一</th>
+                                                <th>星期二</th>
+                                                <th>星期三</th>
+                                                <th>星期四</th>
+                                                <th>星期四</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>数据库技术</td>
+                                                <td></td>
+                                                <td>计算机和通信</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>数据库技术</td>
+                                                <td></td>
+                                                <td>计算机和通信</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>实时系统和操作系统</td>
+                                                <td>数据库技术</td>
+                                                <td>计算机和通信</td>
+                                                <td>手机编程</td>
+                                                <td>体育</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>实时系统和操作系统</td>
+                                                <td>数据库技术</td>
+                                                <td>计算机和通信</td>
+                                                <td>手机编程</td>
+                                                <td>体育</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>编程、数据结构和算法</td>
+                                                <td></td>
+                                                <td>毛泽东思想和中国特色社会主义理论体系概论</td>
+                                                <td>实时系统和操作系统</td>
+                                                <td>编程、数据结构和算法</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>编程、数据结构和算法</td>
+                                                <td></td>
+                                                <td>毛泽东思想和中国特色社会主义理论体系概论</td>
+                                                <td>实时系统和操作系统</td>
+                                                <td>编程、数据结构和算法</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>互联网思维</td>
+                                                <td></td>
+                                                <td>毛泽东思想和中国特色社会主义理论体系概论</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>9</td>
+                                                <td>编程、数据结构和算法</td>
+                                                <td></td>
+                                                <td>毛泽东思想和中国特色社会主义理论体系概论</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>10</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>11</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>12</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /. ROW -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>

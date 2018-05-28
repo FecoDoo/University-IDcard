@@ -56,6 +56,12 @@ class Admin extends Common
     {
         $this->datas = $this->params;
         $this->findcard();
+        
+        if (Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->value('Status'))
+        {
+            $this->returnMsg(400, 'This card has been replaced');
+        }
+        // 更改卡状态
         $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setInc('Status');
 
         if (empty($res)) {

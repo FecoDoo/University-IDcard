@@ -57,6 +57,11 @@ class User extends Common
     {
         $this->datas = $this->params;
         $this->matchCard();
+        if (Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->value('Status') == 0)
+        {
+            $this->returnMsg(400, 'This card has already been freezed');
+        }
+
         $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setDec('Status');
 
         if (!empty($res))

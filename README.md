@@ -1,4 +1,5 @@
 # Use ThinkPHP 5.0 create restful api
+
 ---
 ## API编写前的相关配置(参数过滤)
 * 在config/route.php中配置路由：实现api二级域名访问指定模块; 配置域名参数简写风格
@@ -33,7 +34,7 @@
 
 ### 管理员找回用户密码接口API
 
-* url请求(POST) : localhost/user/findPwd
+* url请求(POST) : localhost/admin/findPwd
 * post参数：
 
     | user_id |
@@ -48,6 +49,26 @@
     "code": 200,
     "msg": "Success",
     "password": [123141223]
+}
+``` 
+
+### 管理员补卡接口API
+
+* url请求(POST) : localhost/admin/replaceCard
+* post参数：
+
+    | card_id |
+    | :-: |
+    | int |
+    | 卡号 |
+
+* 返回数据参考:
+
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data":[]
 }
 ``` 
 
@@ -120,6 +141,24 @@
         "stuBirth":"1022",
         "stuPwd":"12345"
     }
+}
+```
+
+* url请求(POST) : localhost/user/reportLoss
+* post参数
+
+    | card_id |
+    | :-: |
+    | int |
+    | 卡号 |
+
+* 返回数据参考:
+
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": []
 }
 ```
 

@@ -49,8 +49,23 @@ class User extends Common
             $this->returnMsg(400, 'Student number does not exist');
         }
     }
-
     
+    /**
+     * [用户挂失卡片]
+     */
+    public function reportLoss()
+    {
+        $this->datas = $this->params;
+        $this->matchCard();
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setDec('Status');
+
+        if (!empty($res))
+        {
+            $this->returnMsg(200, 'Success');
+        } else {
+            $this->returnMsg(400, 'Failed');
+        }
+    }
     
     /**
      * [用户查询个人信息]
@@ -91,6 +106,17 @@ class User extends Common
             $this->returnMsg(200, 'Success', $res);
         } else {
             $this->returnMsg(400, 'Failed', $res);
+        }
+    }
+
+    private function matchCard()
+    {
+        $res =  Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->find();
+
+        if (!empty($res)) {
+            return;
+        } else {
+            $this->returnMsg(400, 'No such a card', $res);
         }
     }
 }

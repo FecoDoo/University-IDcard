@@ -48,6 +48,37 @@ class Admin extends Common
             $this->returnMsg(400, 'Student number does not exits');
         }
     }
+
+    /**
+     * [管理员补卡接口API]
+     */
+    public function replaceCard()
+    {
+        $this->datas = $this->params;
+        $this->findcard();
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setInc('Status');
+
+        if (empty($res)) {
+            $this->returnMsg(400, 'Failed');
+        } else {
+            $this->returnMsg(200, 'Success');
+        }
+    }
+    /* ---------------- 执行方法  ---------------- */
+    
+    /**
+     * [判断学生卡号是否存在]
+     */
+    public function findcard()
+    {
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->find();
+        if (empty($res)) {
+            $this->returnMsg(400, 'Card not found');
+        } else {
+            return;
+        }
+    }
+
     /**
      * [插入数据至数据库]
      */
@@ -84,8 +115,6 @@ class Admin extends Common
         }
     }
 
-    /* ---------------- 执行方法  ---------------- */
-
     /**
      * [检测用户名类型]
      * @return [null]
@@ -99,4 +128,5 @@ class Admin extends Common
             $this->returnMsg(400, 'Student id already exists');
         }
     }
+
 }

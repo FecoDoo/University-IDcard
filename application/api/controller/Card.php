@@ -11,7 +11,8 @@ class Card extends Common
     public function charge()
     {
         $this->datas = $this->params;
-        $this->findcard($this->datas['card_id']);
+
+        $this->checkCardStatus();
         Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setInc('Charge', $this->datas['charge_number']);
         $this->recordAdd();
     }
@@ -20,8 +21,9 @@ class Card extends Common
     public function consume()
     {
         $this->datas = $this->params;
-        $this->findcard($this->datas['card_id']);
-        Db::table('idcard_card')->setDec('Charge', $this->datas['charge_number']);
+
+        $this->checkCardStatus();
+        Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setDec('Charge', $this->datas['consume_number']);
         $this->recordMinus();
     }
 
@@ -29,7 +31,7 @@ class Card extends Common
     public function getInfo()
     {
         $this->datas = $this->params;
-        $this->findcard($this->datas['card_id']);
+        $this->findcard();
         $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->select();
         if (empty($res)) {
             $this->returnMsg(400, 'No record of this card');
@@ -42,7 +44,7 @@ class Card extends Common
     public function getRecord()
     {
         $this->datas = $this->params;
-        $this->findcard($this->datas['card_id']);
+        $this->findcard();
         $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->select();
         if (empty($res)) {
             $this->returnMsg(400, 'No record of this card');
@@ -51,25 +53,17 @@ class Card extends Common
         }
     }
 
-    // 判断学生卡号是否存在
-    public function findcard($arr)
-    {
-        $res = Db::table('idcard_card')->where('Cno', $arr)->find();
-        if (empty($res)) {
-            $this->returnMsg(400, 'Card not found');
-        } else {
-            return;
-        }
-    }
-
     // 增加充值条目
     public function recordAdd()
     {
+        $this->checkCardStatus();
+
         $record = [
             'Cno' => $this->datas['card_id'],
             'recordAdd' => $this->datas['charge_number'],
             'time' => date('Y-m-d H-i-s'),
         ];
+        
         $res = Db::table('idcard_record')->insert($record);
         if (!empty($res)) {
             $this->returnMsg(200, 'Success');
@@ -81,9 +75,11 @@ class Card extends Common
     // 增加消费条目
     public function recordMinus()
     {
+        $this->checkCardStatus();
+
         $record = [
             'Cno' => $this->datas['card_id'],
-            'recordMinus' => $this->$datas['minus_number'],
+            'recordMinus' => $this->datas['consume_number'],
             'time' => date('Y-m-d H-i-s'),
         ];
         $res = Db::table('idcard_record')->insert($record);
@@ -91,6 +87,35 @@ class Card extends Common
             $this->returnMsg(200, 'Success');
         } else {
             $thsi->returnMsg(400, 'Failed');
+        }
+    }
+
+    
+    /* ------------------- 判断函数 --------------------------*/
+
+    // 判断学生卡号是否存在
+    public function findcard()
+    {
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->find();
+        if (empty($res)) {
+            $this->returnMsg(400, 'Card not found');
+        } else {
+            return;
+        }
+    }
+
+    // 查看卡的挂失状态
+    private function checkCardStatus()
+    {
+        $this->findcard();
+
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->value('Status');
+
+        if ($res == 0)
+        {
+            $this->returnMsg(400, 'This card has been freezed', $res);
+        } else {
+            return;
         }
     }
 }

@@ -71,6 +71,6 @@ class Common extends Controller
         $return_data['msg'] = $msg;
         $return_data['data'] = $data;
 
-        return($return_data);die;
+        echo json_encode($return_data);die;
     }
 }

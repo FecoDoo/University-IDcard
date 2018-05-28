@@ -6,10 +6,12 @@ return [
     Route::post('/user/login','api/user/login'),
     Route::rule('/user/changePwd','api/user/changePwd'),
     Route::rule('/user/getInfo','api/user/getInfo'),
+    Route::rule('/user/reportLoss', 'api/user/reportLoss'),
     
     // Admin
     Route::rule('/admin/findPwd','api/admin/findPwd'),
     Route::rule('/admin/register', 'api/admin/register'),
+    Route::rule('/admin/replaceCard', 'api/admin/replaceCard'),
     
     // Book
     Route::rule('/book/searchBook', 'api/book/searchBook'),

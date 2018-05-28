@@ -50,9 +50,11 @@ class Validater extends Validate
         'user/login' => ['user_id', 'user_pwd'],
         'user/changePwd' => ['user_id', 'user_old_pwd', 'user_pwd'],
         'user/getInfo' => ['user_id'],
+        'user/reportLoss' => ['card_id'],
 
         'admin/findPwd' => ['user_id'],
         'admin/register' => ['user_id','user_pwd','user_name', 'user_dept','user_birth','user_sex'],
+        'admin/replaceCard' => ['card_id'],
 
         'book/searchBook' => ['book_name'],
         'book/searchBorrow' => ['user_id'],

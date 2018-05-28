@@ -59,6 +59,7 @@ class Validater extends Validate
 
         'card/charge' => ['card_id','charge_number'],
         'card/getInfo' => ['card_id'],
+        'card/getRecord' => ['card_id'],
         'card/consume' => ['card_id','consume_number'],
     ];
 

@@ -90,7 +90,7 @@ class User extends Common
             unset($res['user_pwd']);
             $this->returnMsg(200, 'Success', $res);
         } else {
-            $this->returnMsg(200, 'Failed', $res);
+            $this->returnMsg(400, 'Failed', $res);
         }
     }
 }

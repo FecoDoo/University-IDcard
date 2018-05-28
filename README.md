@@ -126,9 +126,30 @@
 ---
 ## 饭卡消费充值模块
 
-### 查询饭卡信息接口API
+### 查询卡内余额接口API
 
 * URL请求(POST):localhost/card/getInfo
+* POST参数
+
+    | card_id |
+    | :-: |
+    | int |
+    | 饭卡号 |
+
+```json
+{
+    "code":200,
+    "msg":"Success",
+    "data":
+        {
+            "Cno":1,
+            "Charge":250
+        },
+```
+
+### 查询消费记录信息接口API
+
+* URL请求(POST):localhost/card/getRecord
 * POST参数
 
     | card_id |
@@ -151,7 +172,7 @@
             "recordAdd":"450",
             "time":"2018-05-27 18:58:13",
             "Cno":1,
-            "recordMinus":null
+            "recordMinus":256
         },
 ]
 ```

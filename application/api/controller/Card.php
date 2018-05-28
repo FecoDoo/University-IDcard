@@ -30,13 +30,25 @@ class Card extends Common
     {
         $this->datas = $this->params;
         $this->findcard($this->datas['card_id']);
-        $res = Db::table('idcard_record')->where('Cno', $this->datas['card_id'])->select();
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->select();
         if (empty($res)) {
-            $this->returnMsg(200, 'No record of this card');
+            $this->returnMsg(400, 'No record of this card');
         } else {
             $this->returnMsg(200, 'Success', $res);
         }
-
+    }
+    
+    // 查询卡内余额
+    public function getRecord()
+    {
+        $this->datas = $this->params;
+        $this->findcard($this->datas['card_id']);
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->select();
+        if (empty($res)) {
+            $this->returnMsg(400, 'No record of this card');
+        } else {
+            $this->returnMsg(200, 'Success', $res);
+        }
     }
 
     // 判断学生卡号是否存在

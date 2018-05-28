@@ -19,4 +19,5 @@ return [
     Route::post('/card/charge', 'api/card/charge'),
     Route::post('/card/consume', 'api/card/consume'),
     Route::rule('/card/getInfo', 'api/card/getInfo'),
+    Route::rule('/card/getRecord', 'api/card/getRecord'),
 ];

@@ -55,12 +55,15 @@ class Admin extends Common
     public function replaceCard()
     {
         $this->datas = $this->params;
+        // 判断卡号是否存在
         $this->findcard();
         
+        // 判断卡的状态
         if (Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->value('Status'))
         {
-            $this->returnMsg(400, 'This card has been replaced');
+            $this->returnMsg(400, 'This card has already been replaced');
         }
+
         // 更改卡状态
         $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setInc('Status');
 
@@ -90,7 +93,7 @@ class Admin extends Common
      */
     private function insertDataToDb()
     {
-        // 用户数据
+        // 用户数据规范化
         $student = [
             'Srtime' => date("Y-m-d H:i:s"),
             'Sno' => $this->datas['user_id'],
@@ -101,7 +104,7 @@ class Admin extends Common
             'Ssex' => $this->datas['user_sex'],
         ];
 
-        //往api_user表中插入用户数据
+        //往idcard_student表中插入用户数据
         $res = Db::table('idcard_student')->insert($student);
 
         //返回执行结果

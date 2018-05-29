@@ -20,7 +20,8 @@ class Book extends Common
             $this->returnMsg(400, 'No such a book');
         }
     }
-
+    
+    // 搜索某本书的信息
     public function searchBorrow()
     {
         $this->datas = $this->params;

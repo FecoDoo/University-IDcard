@@ -7,7 +7,7 @@ class Card extends Common
 {
     public $datas;
 
-    //充值
+    // 充值饭卡
     public function charge()
     {
         $this->datas = $this->params;
@@ -17,12 +17,13 @@ class Card extends Common
         $this->recordAdd();
     }
 
-    // 消费
+    // 消费饭卡
     public function consume()
     {
         $this->datas = $this->params;
 
         $this->checkCardStatus();
+
         Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setDec('Charge', $this->datas['consume_number']);
         $this->recordMinus();
     }
@@ -44,8 +45,11 @@ class Card extends Common
     public function getRecord()
     {
         $this->datas = $this->params;
+        
         $this->findcard();
-        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->select();
+        
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->value('Charge');
+        
         if (empty($res)) {
             $this->returnMsg(400, 'No record of this card');
         } else {
@@ -61,7 +65,9 @@ class Card extends Common
         $record = [
             'Cno' => $this->datas['card_id'],
             'recordAdd' => $this->datas['charge_number'],
+            'recordMinus' => 0,
             'time' => date('Y-m-d H-i-s'),
+            'type' => 'Charge',
         ];
         
         $res = Db::table('idcard_record')->insert($record);
@@ -80,8 +86,11 @@ class Card extends Common
         $record = [
             'Cno' => $this->datas['card_id'],
             'recordMinus' => $this->datas['consume_number'],
+            'recordAdd' => 0,
             'time' => date('Y-m-d H-i-s'),
+            'type' => $this->datas['type'],
         ];
+
         $res = Db::table('idcard_record')->insert($record);
         if (!empty($res)) {
             $this->returnMsg(200, 'Success');

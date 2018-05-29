@@ -48,7 +48,7 @@
 {
     "code": 200,
     "msg": "Success",
-    "password": [123141223]
+    "password": [123456]
 }
 ``` 
 
@@ -162,6 +162,26 @@
 }
 ```
 
+### 用户挂失接口API
+
+* url请求(POST) : localhost/user/reportLoss
+* post参数
+
+    | card_id |
+    | :-: |
+    | int |
+    | 卡号 |
+
+* 返回数据参考:
+
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": []
+}
+```
+
 ---
 ## 饭卡消费充值模块
 
@@ -181,7 +201,6 @@
     "msg":"Success",
     "data":
         {
-            "Cno":1,
             "Charge":250
         },
 ```
@@ -204,14 +223,12 @@
         {
             "recordAdd":"200",
             "time":"2018-05-27 18:57:13",
-            "Cno":1,
-            "recordMinus":null
+            "recordMinus":0
         },
         {
-            "recordAdd":"450",
+            "recordAdd":0,
             "time":"2018-05-27 18:58:13",
-            "Cno":1,
-            "recordMinus":256
+            "recordMinus":"450"
         },
 ]
 ```
@@ -240,10 +257,10 @@
 * URL请求(POST):localhost/card/consume
 * POST参数
 
-    | card_id | consume_number |
-    | :-: | :-: |
-    | int | int |
-    | 饭卡号 | 消费金额 |
+    | card_id | consume_number | type |
+    | :-: | :-: | :-: |
+    | int | int | char |
+    | 饭卡号 | 消费金额 | 消费类型 |
 
 
 ```json

@@ -18,6 +18,7 @@ class Validater extends Validate
         'card_id' => ['require', 'max'=> 10],
         'charge_number' => ['require', 'max' => 5],
         'consume_number' => ['require', 'max' => 5],
+        'type' => ['require', 'max' => 30],
 
     ];
 
@@ -44,6 +45,9 @@ class Validater extends Validate
         'charge_number.max' => 'Charge number max is 99999',
         'consume_number.require' => 'Consume number is required',
         'consume_number.max' => 'Consume number max is 99999',
+
+        'type.require' => 'Consume type is required',
+        'type.max' => 'Consume type max length is 30',
     ];
 
     protected $scene = [
@@ -59,10 +63,10 @@ class Validater extends Validate
         'book/searchBook' => ['book_name'],
         'book/searchBorrow' => ['user_id'],
 
-        'card/charge' => ['card_id','charge_number'],
+        'card/charge' => ['card_id','charge_number', 'type'],
         'card/getInfo' => ['card_id'],
         'card/getRecord' => ['card_id'],
-        'card/consume' => ['card_id','consume_number'],
+        'card/consume' => ['card_id','consume_number', 'type'],
     ];
 
     protected function initialize()

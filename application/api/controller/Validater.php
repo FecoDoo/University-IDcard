@@ -63,7 +63,7 @@ class Validater extends Validate
         'book/searchBook' => ['book_name'],
         'book/searchBorrow' => ['user_id'],
 
-        'card/charge' => ['card_id','charge_number', 'type'],
+        'card/charge' => ['card_id','charge_number'],
         'card/getInfo' => ['card_id'],
         'card/getRecord' => ['card_id'],
         'card/consume' => ['card_id','consume_number', 'type'],

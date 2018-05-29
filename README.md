@@ -48,7 +48,9 @@
 {
     "code": 200,
     "msg": "Success",
-    "password": [123456]
+    "data": {
+        "Spwd": [12345]
+    }
 }
 ``` 
 

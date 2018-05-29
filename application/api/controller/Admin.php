@@ -26,20 +26,20 @@ class Admin extends Common
      */
     public function findPwd()
     {
-        //1. 接收参数
+        // 1. 接收参数
         $this->datas = $this->params;
-        //2. 确定该用户名是否已经存在数据库
+        // 2. 确定该用户名是否已经存在数据库
         if ($this->checkExist($this->datas['user_id'])) {
-            //3. 同时匹配用户名和密码
-            $res = Db::table('Student')->where(['stuNo' => $this->datas['user_id'], 'stuPwd' => $this->datas['user_old_pd']])->find();
+            // 3. 同时匹配用户名和密码
+            $res = Db::table('idcard_student')->where(['Sno' => $this->datas['user_id'], 'Spwd' => $this->datas['user_old_pd']])->find();
             if (!empty($res)) {
-                //4. 更新密码字段
-                $res = Db::table('Student')->where('stuNo', $this->datas['user_id'])->find(['stuPwd' => $this->datas['user_pwd']]);
-                //5. 返回执行结果
+                // 4. 提取密码字段
+                $res = Db::table('idcard_student')->where('Sno', $this->datas['user_id'])->value('Spwd');
+                // 5. 返回执行结果
                 if (!empty($res)) {
-                    $this->returnMsg(200, 'Password finded', $res['stuPwd']);
+                    $this->returnMsg(200, 'Password finded', $res['Spwd']);
                 } else {
-                    $this->returnMsg(400, 'Password did not find');
+                    $this->returnMsg(400, 'Old password did not match');
                 }
             } else {
                 $this->returnMsg(400, 'Password incorrect');

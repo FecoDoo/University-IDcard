@@ -32,7 +32,7 @@ class User extends Common
         //3. 确定该用户名是否已经存在数据库
         if (!empty($this->checkExist($this->datas['user_id']))) {
             //4. 同时匹配用户名和密码
-            $res = Db::table('idcard_student')->where(['Sno' => $this->datas['user_id'], 'Spwd' => $this->datas['user_old_pd']])->find();
+            $res = Db::table('idcard_student')->where(['Sno' => $this->datas['user_id'], 'Spwd' => $this->datas['user_old_pwd']])->find();
             //5. 匹配成功则将新密码加密后更新该用户密码
             if (!empty($res)) {
                 //更新user_pwd字段

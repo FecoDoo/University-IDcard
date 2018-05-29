@@ -6,6 +6,7 @@ use app\api\controller\Validater;
 use think\Controller;
 use think\Request;
 use think\Db;
+use app\api\controller\Oauth;
 
 class Common extends Controller
 {

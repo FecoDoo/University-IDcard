@@ -117,7 +117,7 @@ class User extends Common
     private function matchCard()
     {
         $res =  Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->find();
-
+        Session::set($this->datas['user_id'],'thinkphp');
         if (!empty($res)) {
             return;
         } else {

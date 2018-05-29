@@ -6,7 +6,7 @@ use app\api\controller\Validater;
 use think\Controller;
 use think\Request;
 use think\Db;
-use app\api\controller\Oauth;
+use think\Session;
 
 class Common extends Controller
 {
@@ -21,12 +21,8 @@ class Common extends Controller
     protected function initialize()
     {
         $this->req = new Request;
-        
         // 验证参数,返回成功过滤后的参数数组
         $this->params = $this->checkParams($this->req->param());
-
-        // 验证Token
-        // $this->checkToken($this->params['token']);
     }
     
     /**
@@ -34,18 +30,12 @@ class Common extends Controller
      */
     protected function checkToken($arr)
     {
-        $token = $arr;
-        //如果已经传递token数据，就删除token数据，生成服务端token与客户端的token做对比
-        unset($arr);
-        $session_token = '';
-        foreach ($arr as $key => $val) {
-            $session_token .= md5($val);
-        }
-        $session_token = md5('api_' . $session_token . '_api');
-        //echo $session_token;die; //调试输出
-        //如果传递过来的token不相等
-        if ($token !== $session_token) {
-            $this->returnMsg(400, 'token not correct');
+        $res = Db::table('idcard_student')->where('token', $arr)->find();
+        if (empty($res))
+        {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
@@ -86,5 +76,40 @@ class Common extends Controller
         $return_data['data'] = $data;
 
         echo json_encode($return_data);die;
+    }
+
+    /* --------------------- Token --------------------*/
+    /**
+     * 设置AccessToken
+     * @param $clientInfo
+     * @return int
+     */
+    protected function setAccessToken($user_id)
+    {
+        //生成令牌
+        $accessToken = self::buildAccessToken();
+        self::saveAccessToken($accessToken, $user_id);
+        return $accessToken;
+    }
+
+    /**
+     * 生成AccessToken
+     * @return string
+     */
+    protected static function buildAccessToken($lenght = 32)
+    {
+        //生成AccessToken
+        $str_pol = "123456warweqrABCDEFGHIJKLMNOPQRST12341XYZ123456789abcdefghijklmnopqrstuvwxyz";
+        return substr(str_shuffle($str_pol), 0, $lenght);
+    }
+
+    /**
+     * 存储
+     * @param $accessToken
+     */
+    protected static function saveAccessToken($accessToken, $user_id)
+    {
+        //存储accessToken
+        Db::table('idcard_student')->where('Sno', $user_id)->insert(['token' => $accessToken]);
     }
 }

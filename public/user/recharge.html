@@ -125,6 +125,37 @@
     <script src="../assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#recharge").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/card/charge",
+                    data: {
+                      card_id: $("#number").val(),
+                      charge_number: $("#amount").val()
+                    },
+                    dataType: "json",
+                    success: function(data){
+                      if (data.code == 200) {
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-success");
+                        $("#warning").html(data.msg);
+                      }else{
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-danger");
+                        $("#warning").html(data.msg);
+                      }
+                    },
+                    error: function(jqXHR){
+                      $("#warning").removeClass();
+                      $("#warning").addClass("alert alert-danger");
+                      $("#warning").html("发生错误：" + jqXHR.status);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -203,6 +203,7 @@
     "data":{
             "Charge":250
         },
+}
 ```
 
 ### 查询消费记录信息接口API
@@ -232,7 +233,8 @@
             "recordMinus":"450",
             "type": "食堂消费"
         },
-]
+    ]
+}
 ```
 
 ### 饭卡充值接口API
@@ -312,7 +314,7 @@
     
     | user_id |
     | :-: |
-    | string |
+    | int |
     | 学号 |
 
 * 返回数据参考
@@ -330,5 +332,24 @@
             "Time": "2018-05-29 20:43:17"
         }
     ]
+}
+```
+
+## 借阅书籍API
+
+* url请求(POST):localhost/book/borrow
+* POST参数:
+    
+    | book_id | user_id |
+    | :-: | :-: |
+    | int | int |
+    | 书号 | 学号 |
+
+* 返回数据参考
+```json
+{
+    "code":200,
+    "msg":"Success",
+    "data": []
 }
 ```

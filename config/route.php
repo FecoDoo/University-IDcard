@@ -16,6 +16,7 @@ return [
     // Book
     Route::rule('/book/searchBook', 'api/book/searchBook'),
     Route::rule('/book/searchBorrow', 'api/book/searchBorrow'),
+    Route::rule('/book/borrow', 'api/book/borrow'),
 
     // Card
     Route::post('/card/charge', 'api/card/charge'),

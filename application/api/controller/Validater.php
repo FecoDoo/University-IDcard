@@ -15,10 +15,11 @@ class Validater extends Validate
         'user_birth' => ['require', 'date'],
         'user_dept' => ['require', 'max' => 30],
         'user_sex' => ['require', 'max' => 3],
-        
-        'book_name' => ['require', 'max' => 16],
 
-        'card_id' => ['require', 'max'=> 10],
+        'book_name' => ['require', 'max' => 16],
+        'book_id' => ['require', 'max' => 30],
+
+        'card_id' => ['require', 'max' => 10],
         'charge_number' => ['require', 'max' => 5],
         'consume_number' => ['require', 'max' => 5],
         'type' => ['require', 'max' => 30],
@@ -27,7 +28,7 @@ class Validater extends Validate
 
     protected $message = [
         'token.require' => 'Token is required',
-        'token.max' => 256,
+        'token.max' => 'token max length is 256',
 
         'user_id.require' => 'Student id is required',
         'user_id.length' => 'Student id max length is 10',
@@ -46,6 +47,8 @@ class Validater extends Validate
 
         'book_name.require' => 'Book name is required',
         'book_name.max' => 'Max length of the book name is 16',
+        'book_id.require' => 'Book id is required',
+        'book_id.max' => 'Book id max length is 20',
 
         'card_id.require' => 'Card id is required',
         'card_id.max' => 'Card id max length is 10',
@@ -65,16 +68,17 @@ class Validater extends Validate
         'user/reportLoss' => ['card_id'],
 
         'admin/findPwd' => ['user_id'],
-        'admin/register' => ['user_id','user_pwd','user_name', 'user_dept','user_birth','user_sex'],
+        'admin/register' => ['user_id', 'user_pwd', 'user_name', 'user_dept', 'user_birth', 'user_sex'],
         'admin/replaceCard' => ['card_id'],
 
         'book/searchBook' => ['book_name'],
         'book/searchBorrow' => ['user_id'],
+        'book/borrow' => ['book_id', 'user_id'],
 
-        'card/charge' => ['card_id','charge_number'],
+        'card/charge' => ['card_id', 'charge_number'],
         'card/getRecord' => ['card_id'],
         'card/getCharge' => ['card_id'],
-        'card/consume' => ['card_id','consume_number', 'type'],
+        'card/consume' => ['card_id', 'consume_number', 'type'],
     ];
 
     protected function initialize()

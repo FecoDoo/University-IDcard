@@ -65,7 +65,7 @@ class Admin extends Common
         }
 
         // 更改卡状态
-        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setInc('Status');
+        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->update(['Status' => 1]);
 
         if (empty($res)) {
             $this->returnMsg(400, 'Failed');
@@ -73,6 +73,8 @@ class Admin extends Common
             $this->returnMsg(200, 'Success');
         }
     }
+
+
     /* ---------------- 执行方法  ---------------- */
     
     /**

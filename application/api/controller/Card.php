@@ -52,7 +52,7 @@ class Card extends Common
         $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->value('Charge');
         
         if (empty($res)) {
-            $this->returnMsg(400, 'No record of this card');
+            $this->returnMsg(400, 'Card does not exit');
         } else {
             $this->returnMsg(200, 'Success', $res);
         }

@@ -118,14 +118,12 @@
                                         <label id="name" class="col-sm-2 control-label"></label>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="col-sm-2 control-label" style="color:#428bca">密码</label>
-                                        <label id="password" class="col-sm-2 control-label"></label>
                                         <label for="college" class="col-sm-2 control-label" style="color:#428bca">学院</label>
                                         <label id="college" class="col-sm-2 control-label"></label>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="sex" class="col-sm-2 control-label" style="color:#428bca">性别</label>
                                         <label id="sex" class="col-sm-2 control-label"></label>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="birthday" class="col-sm-2 control-label" style="color:#428bca">生日</label>
                                         <label id="birthday" class="col-sm-2 control-label"></label>
                                     </div>
@@ -162,12 +160,12 @@
                         $("#warning").addClass("alert alert-success");
                         $("#warning").html(data.msg);
 
-                        $("#number").html(data.stuNo);
-                        $("#name").html(data.stuName);
-                        $("#password").html(data.stuPwd);
-                        $("#college").html(data.stuDept);
-                        $("#sex").html(data.stuSex);
-                        $("#birthday").html(data.stuBirth);
+                        $("#number").html(data.data.Sno);
+                        $("#name").html(data.data.Sname);
+                        $("#password").html(data.data.Spwd);
+                        $("#college").html(data.data.Sdpt);
+                        $("#sex").html(data.data.Ssex);
+                        $("#birthday").html(data.data.Sbirth);
                       }else{
                         $("#warning").removeClass();
                         $("#warning").addClass("alert alert-danger");

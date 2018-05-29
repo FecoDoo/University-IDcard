@@ -164,8 +164,33 @@
     <script src="../assets/js/custom-scripts.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            
-        }
+            $("#recharge").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/card/getInfo",
+                    data: {
+                      card_id: $("#number").val(),
+                    },
+                    dataType: "json",
+                    success: function(data){
+                      if (data.code == 200) {
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-success");
+                        $("#warning").html(data.msg);
+                      }else{
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-danger");
+                        $("#warning").html(data.msg);
+                      }
+                    },
+                    error: function(jqXHR){
+                      $("#warning").removeClass();
+                      $("#warning").addClass("alert alert-danger");
+                      $("#warning").html("发生错误：" + jqXHR.status);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 

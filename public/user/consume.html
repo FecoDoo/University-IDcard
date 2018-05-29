@@ -136,6 +136,38 @@
     <script src="../assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#consume").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/card/consume",
+                    data: {
+                      card_id: $("#number").val(),
+                      type: $("#consume_type").val(),
+                      consume_number: $("#amount").val()
+                    },
+                    dataType: "json",
+                    success: function(data){
+                      if (data.code == 200) {
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-success");
+                        $("#warning").html(data.msg);
+                      }else{
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-danger");
+                        $("#warning").html(data.msg);
+                      }
+                    },
+                    error: function(jqXHR){
+                      $("#warning").removeClass();
+                      $("#warning").addClass("alert alert-danger");
+                      $("#warning").html("发生错误：" + jqXHR.status);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

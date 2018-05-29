@@ -6,6 +6,17 @@ use think\Db;
 class Admin extends Common
 {
     public $datas;
+    
+    /**
+     * [管理员登陆时接口请求的方法]
+     * @return [null]
+     */
+    public function login()
+    {
+        $this->datas = $this->params;
+        // 在数据库中查询数据 (用户名和密码匹配)
+        $this->matchAdminAndPwd();
+    }
 
     /**
      * [注册学生时接口请求的方法]
@@ -137,6 +148,18 @@ class Admin extends Common
             return;
         } else {
             $this->returnMsg(400, 'Student id already exists');
+        }
+    }
+
+    protected function matchAdminAndPwd()
+    {
+        $res = Db::table('idcard_admin')->where('Ano', $this->datas['admin_id'])->where('Apwd', $this->datas['admin_pwd'])->find();
+
+        if (empty($res))
+        {
+            $this->returnMsg(400, 'Password incorrect');
+        } else {
+            $this->returnMsg(200, 'Success');
         }
     }
 }

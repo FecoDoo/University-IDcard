@@ -13,6 +13,25 @@
 ---
 ## Admin模块
 
+### 管理员登录模块
+
+* url请求(POST) : localhost/admin/login
+* post参数
+    
+    | user_id | user_pwd |
+    | :-: | :-: |
+    | int | string|
+    | 管理员账号 | 密码 |
+
+* 返回数据参考:
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": []
+}
+```
+
 ### 用户注册接口API
 
 * url请求(POST) : localhost/admin/register

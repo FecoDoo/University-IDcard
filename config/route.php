@@ -12,6 +12,7 @@ return [
     Route::rule('/admin/findPwd','api/admin/findPwd'),
     Route::rule('/admin/register', 'api/admin/register'),
     Route::rule('/admin/replaceCard', 'api/admin/replaceCard'),
+    Route::rule('/admin/login', 'api/admin/login'),
     
     // Book
     Route::rule('/book/searchBook', 'api/book/searchBook'),

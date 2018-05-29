@@ -23,13 +23,16 @@ class Validater extends Validate
         'charge_number' => ['require', 'max' => 5],
         'consume_number' => ['require', 'max' => 5],
         'type' => ['require', 'max' => 30],
-
+        
+        'admin_id' => ['require', 'max' => 10],
+        'admin_pwd' => ['require', 'max' => 20],
     ];
 
     protected $message = [
         'token.require' => 'Token is required',
         'token.max' => 'token max length is 256',
-
+        
+        // User
         'user_id.require' => 'Student id is required',
         'user_id.length' => 'Student id max length is 10',
         'user_pwd.require' => 'Password is required',
@@ -44,21 +47,28 @@ class Validater extends Validate
         'user_dept.length' => 'Student department max length is 10',
         'user_sex.require' => 'Student sex is required',
         'user_sex.max' => 'Student sex attribute is too long',
-
+        
+        //Book
         'book_name.require' => 'Book name is required',
         'book_name.max' => 'Max length of the book name is 16',
         'book_id.require' => 'Book id is required',
         'book_id.max' => 'Book id max length is 20',
 
+        // Card
         'card_id.require' => 'Card id is required',
         'card_id.max' => 'Card id max length is 10',
         'charge_number.require' => 'Charge number is required',
         'charge_number.max' => 'Charge number max is 99999',
         'consume_number.require' => 'Consume number is required',
         'consume_number.max' => 'Consume number max is 99999',
-
         'type.require' => 'Consume type is required',
         'type.max' => 'Consume type max length is 30',
+        
+        // Admin
+        'admin_id.require' => 'Admin id is required',
+        'admin_id.length' => 'Admin id max length is 10',
+        'admin_pwd.require' => 'Password is required',
+        'admin_pwd.max' => 'Password is max length 20',
     ];
 
     protected $scene = [
@@ -70,6 +80,7 @@ class Validater extends Validate
         'admin/findPwd' => ['user_id'],
         'admin/register' => ['user_id', 'user_pwd', 'user_name', 'user_dept', 'user_birth', 'user_sex'],
         'admin/replaceCard' => ['card_id'],
+        'admin/login' => ['admin_id', 'admin_pwd'],
 
         'book/searchBook' => ['book_name'],
         'book/searchBorrow' => ['user_id'],

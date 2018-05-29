@@ -190,7 +190,7 @@
 
 ### 查询卡内余额接口API
 
-* URL请求(POST):localhost/card/getInfo
+* URL请求(POST):localhost/card/getCharge
 * POST参数
 
     | card_id |
@@ -226,12 +226,14 @@
         {
             "recordAdd":"200",
             "time":"2018-05-27 18:57:13",
-            "recordMinus":0
+            "recordMinus":0,
+            "type": "Charge"
         },
         {
             "recordAdd":0,
             "time":"2018-05-27 18:58:13",
-            "recordMinus":"450"
+            "recordMinus":"450",
+            "type": "食堂消费"
         },
 ]
 ```

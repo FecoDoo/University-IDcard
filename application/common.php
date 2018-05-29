@@ -21,18 +21,31 @@ class Common extends Controller
     protected function initialize()
     {
         $this->req = new Request;
+        
         // 验证参数,返回成功过滤后的参数数组
         $this->params = $this->checkParams($this->req->param());
-    }
 
-    public function checkTime($arr)
+        // 验证Token
+        $this->checkToken($this->params['token']);
+    }
+    
+    /**
+     * [检测Token]
+     */
+    protected function checkToken($arr)
     {
-        //$this->returnMsg(400, '请求超时!');
-        if (!isset($arr['time']) || intval($arr['time']) <= 1) {
-            $this->returnMsg(400, '时间戳不存在!');
+        $token = $arr;
+        //如果已经传递token数据，就删除token数据，生成服务端token与客户端的token做对比
+        unset($arr);
+        $session_token = '';
+        foreach ($arr as $key => $val) {
+            $session_token .= md5($val);
         }
-        if (time() - intval($arr['time']) > 10) {
-            $this->returnMsg(400, '请求超时!');
+        $session_token = md5('api_' . $session_token . '_api');
+        //echo $session_token;die; //调试输出
+        //如果传递过来的token不相等
+        if ($token !== $session_token) {
+            $this->returnMsg(400, 'token not correct');
         }
     }
 

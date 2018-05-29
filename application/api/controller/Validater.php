@@ -6,6 +6,8 @@ use think\Validate;
 class Validater extends Validate
 {
     protected $rule = [
+        'token' => ['required', 'max' => 256],
+
         'user_id' => ['require', 'max' => 10],
         'user_pwd' => ['require', 'max' => 20],
         'user_name' => ['require', 'max' => 30],
@@ -23,6 +25,9 @@ class Validater extends Validate
     ];
 
     protected $message = [
+        'token.require' => 'Token is required',
+        'token.max' => 256,
+
         'user_id.require' => 'Student id is required',
         'user_id.length' => 'Student id max length is 10',
         'user_pwd.require' => 'Password is required',
@@ -64,8 +69,8 @@ class Validater extends Validate
         'book/searchBorrow' => ['user_id'],
 
         'card/charge' => ['card_id','charge_number'],
-        'card/getInfo' => ['card_id'],
         'card/getRecord' => ['card_id'],
+        'card/getCharge' => ['card_id'],
         'card/consume' => ['card_id','consume_number', 'type'],
     ];
 

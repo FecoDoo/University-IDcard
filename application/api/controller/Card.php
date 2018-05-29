@@ -29,7 +29,7 @@ class Card extends Common
     }
 
     // 获取流水账
-    public function getInfo()
+    public function getRecord()
     {
         $this->datas = $this->params;
         $this->findcard();
@@ -42,7 +42,7 @@ class Card extends Common
     }
     
     // 查询卡内余额
-    public function getRecord()
+    public function getCharge()
     {
         $this->datas = $this->params;
         

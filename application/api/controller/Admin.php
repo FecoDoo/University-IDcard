@@ -17,7 +17,7 @@ class Admin extends Common
         //检测学号是否存在
         $this->checkRegisterUser();
         //将信息写入数据库
-        $this->insertDataToDB();
+        $this->insertDataToDb();
     }
 
     /**

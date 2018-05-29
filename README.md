@@ -134,12 +134,13 @@
     "code": 200,
     "msg": "Success",
     "data": {
-        "stuName":"吴鑫康",
-        "stuNo":"201619630322",
-        "stuDept":"国际学院",
-        "stuSex":"男",
-        "stuBirth":"1022",
-        "stuPwd":"12345"
+        "Sname": "吴鑫康",
+        "Sdpt": "国际学院",
+        "Ssex": "男",
+        "Sbirth":"1998-01-01",
+        "Spwd": "12345",
+        "Sno":1,
+        "Srtime": "2018-05-27 17:45:24"
     }
 }
 ```

@@ -80,7 +80,7 @@ class User extends Common
     {
         $this->datas = $this->params;
         $res = Db::table('idcard_student')->where('Sno',$this->datas['user_id'])->find();
-        unset($res['user_pwd']);
+        unset($res['Spwd']);
         $this->returnMsg(200,'Success',$res);
     }
     /* ---------------- 执行方法  ---------------- */
@@ -107,7 +107,7 @@ class User extends Common
         $res = Db::table('idcard_student')->where('Sno', $this->datas['user_id'])->where('Spwd', $this->datas['user_pwd'])->find();
 
         if (!empty($res)) {
-            unset($res['user_pwd']);
+            unset($res['Spwd']);
             $this->returnMsg(200, 'Success', $res);
         } else {
             $this->returnMsg(400, 'Failed', $res);

@@ -93,48 +93,40 @@
                         <div class="panel panel-primary text-center no-boder bg-color-green">
                             <div class="panel-body">
                                 <i class="fa fa-book fa-5x"></i>
-                                <h3>0</h3>
+                                <h3 id="borrow_amount"></h3>
                             </div>
                             <div class="panel-footer back-footer-green">
                                 当前借阅
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                            <div class="panel-body">
-                                <i class="fa fa-jpy fa-5x"></i>
-                                <h3>0</h3>
-                            </div>
-                            <div class="panel-footer back-footer-blue">
-                                欠费
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                借阅情况
-                            </div>
                             <div class="panel-body">
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">剩余时间：<span>10</span>天</span>
-                                        <i class="fa fa-book fa-user"></i>Book name
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">剩余时间：<span>20</span>天</span>
-                                        <i class="fa fa-book fa-user"></i>Book name
-                                    </a>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="transaction-table">
+                                        <thead>
+                                            <tr>
+                                                <th>借阅时间</th>
+                                                <th>书名</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="cloneTr">
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /. ROW  -->
+                <!-- /. ROW -->
             </div>
             <!-- /. PAGE INNER  -->
         </div>
@@ -146,6 +138,49 @@
     <script src="../assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                type: "POST",
+                url: "/book/searchBorrow",
+                data: {
+                  user_id: 2,
+                },
+                dataType: "json",
+                success: function(data){
+                    var tr = $("#cloneTr");
+                    var amount = data.data.length;
+                    $("#borrow_amount").text(amount);
+                    $.each(data.data, function(index, item){
+                        //克隆tr，每次遍历可以产生新的tr
+                        var clonedTr = tr.clone();
+                        var _index = index;
+
+                        //循环遍历cloneTr的每一个td元素，并赋值
+                        clonedTr.children("td").each(function(inner_index){
+
+                            //根据索引为每一个td赋值
+                            switch(inner_index){
+                                case(0):
+                                    $(this).html(item.Time);
+                                    break;
+                                case(1):
+                                    $(this).html(item.Book);
+                                    break;
+                            } //end switch
+                        }); //end children.each
+                        //把克隆好的tr追加到原来的tr后面
+                        clonedTr.insertAfter(tr);
+                    }); //end $each
+                    $("#cloneTr").hide(); //隐藏id=clone的tr，因为该tr中的td没有数据
+                    $("#transaction-table").show();
+                },
+                error: function(jqXHR){
+                  alert("发生错误：" + jqXHR.status);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

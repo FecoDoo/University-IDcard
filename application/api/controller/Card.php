@@ -68,9 +68,9 @@ class Card extends Common
             'recordAdd' => $this->datas['charge_number'],
             'recordMinus' => 0,
             'time' => date('Y-m-d H-i-s'),
-            'type' => 'Charge',
+            'type' => '充值',
         ];
-        
+
         $res = Db::table('idcard_record')->insert($record);
         if (!empty($res)) {
             $this->returnMsg(200, 'Success');

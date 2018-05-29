@@ -66,6 +66,9 @@
                         <a href="consume.html" class="active-menu"><i class="fa fa-jpy"></i>消费</a>
                     </li>
                     <li>
+                        <a href="reportlose.html"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
+                    </li>
+                    <li>
                         <a href="schedule.html"><i class="fa fa-dashboard"></i>课表</a>
                     </li>
                     <li>
@@ -86,14 +89,17 @@
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
-                    <form class="form-horizontal">
+                    <div class="form-horizontal">
                         <div class="form-group">
-                            <div class="form-group">
-                                <label for="id" class="col-sm-1"></label>
-                            </div>
-                            <label for="id" class="col-sm-1 control-label">消费类型</label>
+                            <label for="number" class="col-sm-1 control-label">消费学号</label>
                             <div class="col-sm-3">
-                                <select class="form-control">
+                                <input type="text" class="form-control" id="number" placeholder="请输入消费学号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="consume_type" class="col-sm-1 control-label">消费类型</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="consume_type">
                                     <option>养贤府食堂</option>
                                     <option>家和食堂</option>
                                     <option>电费</option>
@@ -102,19 +108,23 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="id" class="col-sm-1 control-label">消费金额</label>
+                            <label for="amount" class="col-sm-1 control-label">消费金额</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="id" placeholder="请输入消费金额">
+                                <input type="text" class="form-control" id="amount" placeholder="请输入消费金额">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-3">
+                                <div id="warning"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-1 col-sm-4">
-                                <button type="submit" class="btn btn-primary">消费</button>
+                                <button class="btn btn-primary" id="consume">消费</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <!-- /. ROW -->
             </div>
             <!-- /. PAGE INNER  -->
         </div>

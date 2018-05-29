@@ -66,6 +66,9 @@
                         <a href="consume.html"><i class="fa fa-jpy"></i>消费</a>
                     </li>
                     <li>
+                        <a href="reportlose.html"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
+                    </li>
+                    <li>
                         <a href="schedule.html"><i class="fa fa-dashboard"></i>课表</a>
                     </li>
                     <li>
@@ -86,30 +89,30 @@
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
-                    <form id="recharge-form" class="form-horizontal col-sm-12">
-                                    <div class="form-group">
-                                        <label for="id" class="col-sm-1"></label>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3">
-                                            <button class="btn btn-default" type="button">10元</button>
-                                            <button class="btn btn-default" type="button">20元</button>
-                                            <button class="btn btn-default" type="button">30元</button>
-                                            <button class="btn btn-default" type="button">50元</button>
-                                            <button class="btn btn-default" type="button">100元</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="id" placeholder="其他金额">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-4">
-                                            <button type="submit" class="btn btn-primary">充值</button>
-                                        </div>
-                                    </div>
-                                </form>
+                    <div class="form-horizontal col-sm-12">
+                        <div class="form-group">
+                            <label for="number" class="col-sm-1 control-label">充值学号</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="number" placeholder="请输入学号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" class="col-sm-1 control-label">充值金额</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="amount" placeholder="请输入充值金额">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <div id="warning"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <button class="btn btn-primary" id="recharge">充值</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /. PAGE INNER  -->

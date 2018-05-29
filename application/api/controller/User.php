@@ -108,9 +108,9 @@ class User extends Common
 
         if (!empty($res)) {
             unset($res['Spwd']);
-            $this->returnMsg(200, 'Success', $res);
+            $this->returnMsg(200, 'Success');
         } else {
-            $this->returnMsg(400, 'Failed', $res);
+            $this->returnMsg(400, 'Failed');
         }
     }
 

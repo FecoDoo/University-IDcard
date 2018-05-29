@@ -10,6 +10,7 @@ class Validater extends Validate
 
         'user_id' => ['require', 'max' => 10],
         'user_pwd' => ['require', 'max' => 20],
+        'user_old_pwd' => ['require', 'max' => 20],
         'user_name' => ['require', 'max' => 30],
         'user_birth' => ['require', 'date'],
         'user_dept' => ['require', 'max' => 30],
@@ -32,6 +33,8 @@ class Validater extends Validate
         'user_id.length' => 'Student id max length is 10',
         'user_pwd.require' => 'Password is required',
         'user_pwd.max' => 'Password is max length 20',
+        'user_old_pwd.require' => 'Old password is required',
+        'user_old_pwd.max' => ' Old password is max length 20',
         'user_name.require' => 'Student name is required',
         'user_name.length' => 'Student name max length is 10',
         'user_birth.require' => 'Student birth is required',

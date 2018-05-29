@@ -26,7 +26,7 @@ class Common extends Controller
         $this->params = $this->checkParams($this->req->param());
 
         // 验证Token
-        $this->checkToken($this->params['token']);
+        // $this->checkToken($this->params['token']);
     }
     
     /**

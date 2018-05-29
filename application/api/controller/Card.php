@@ -13,6 +13,7 @@ class Card extends Common
         $this->datas = $this->params;
 
         $this->checkCardStatus();
+        
         Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->setInc('Charge', $this->datas['charge_number']);
         $this->recordAdd();
     }
@@ -33,7 +34,7 @@ class Card extends Common
     {
         $this->datas = $this->params;
         $this->findcard();
-        $res = Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->select();
+        $res = Db::table('idcard_record')->where('Cno', $this->datas['card_id'])->select();
         if (empty($res)) {
             $this->returnMsg(400, 'No record of this card');
         } else {

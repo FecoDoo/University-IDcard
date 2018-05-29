@@ -49,7 +49,7 @@
     "code": 200,
     "msg": "Success",
     "data": {
-        "Spwd": [12345]
+        "Spwd": "12345"
     }
 }
 ``` 
@@ -93,9 +93,7 @@
 {
     "code": 200,
     "msg": "Success",
-    "data": {
-        "user_id": 201619630301,
-    }
+    "data": []
 }
 ```
 
@@ -202,8 +200,7 @@
 {
     "code":200,
     "msg":"Success",
-    "data":
-        {
+    "data":{
             "Charge":250
         },
 ```
@@ -279,7 +276,7 @@
 ---
 ## 图书管理模块
 
-### 查询图书状态API
+### 查询图书信息API
 
 * url请求(POST):localhost/book/searchBook
 * POST参数:
@@ -295,9 +292,16 @@
 {
     "code": 200,
     "msg": "Success",
-    "data": {
-        "status": 1,
-    }
+    "data": [
+        {
+            "Bno": 1,
+            "Bname": "数据库原理",
+            "Status": 1,
+            "Publisher": "机械工业出版社",
+            "Version": "18年第一版",
+            "Type": "软件工程"
+        }
+    ]
 }
 ```
 
@@ -316,9 +320,15 @@
 {
     "code":200,
     "msg":"Success",
-    "data":[
-        "数据库原理",
-        "2018-05-27 00:00:00"
+    "data": [
+        {
+            "Book": "计算机网络",
+            "Time": "2018-05-29 20:44:39"
+        },
+        {
+            "Book": "计算机网络",
+            "Time": "2018-05-29 20:43:17"
+        }
     ]
 }
 ```

@@ -30,14 +30,14 @@ class Admin extends Common
         $this->datas = $this->params;
         // 2. 确定该用户名是否已经存在数据库
         if ($this->checkExist($this->datas['user_id'])) {
-            // 3. 同时匹配用户名和密码
-            $res = Db::table('idcard_student')->where(['Sno' => $this->datas['user_id'], 'Spwd' => $this->datas['user_old_pd']])->find();
+            // 3. 匹配用户名
+            $res = Db::table('idcard_student')->where(['Sno' => $this->datas['user_id']])->find();
             if (!empty($res)) {
                 // 4. 提取密码字段
                 $res = Db::table('idcard_student')->where('Sno', $this->datas['user_id'])->value('Spwd');
                 // 5. 返回执行结果
                 if (!empty($res)) {
-                    $this->returnMsg(200, 'Password finded', $res['Spwd']);
+                    $this->returnMsg(200, 'Password found', $res);
                 } else {
                     $this->returnMsg(400, 'Old password did not match');
                 }
@@ -137,5 +137,4 @@ class Admin extends Common
             $this->returnMsg(400, 'Student id already exists');
         }
     }
-
 }

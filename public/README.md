@@ -1,11 +1,16 @@
 # Front-end doc
 
----
+Bootstrap/jQuery/Ajax University-IDCard system for user and administrator
+
+<br>
+
 ## Doc Menu
 
 [TOC]
 
 ---
+<br>
+
 ## Project Structure
 
 ~~~
@@ -25,6 +30,8 @@
 ~~~
 
 ---
+<br>
+
 ## Import css/js framework and library
 
 ### css framework:
@@ -39,23 +46,45 @@
 * morris.js
 
 ---
+<br>
+
 ## Custom css/js file
 * custom-styles.css
 
 * custom-scripts.js
 
 ---
+<br>
+
+### JSON format got from back-end
+* "code" : status code
+
+* "msg" : message need to be show
+
+* "data" : data need to be show
+
+```json
+{
+	"code" : 200,
+	"msg" : "xxx",
+	"data" : {
+		"xxx"
+	}
+}
+```
+
+---
+<br>
+
 ## Login
 
-> A login page for both user and administrator<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/login/4.png)
 
-By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
+>By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
 
 ```js
-<script type="text/javascript">
   $(document).ready(function(){
     $("#login").click(function(){
-
       // ajax判断用户名密码是否正确
       if ($("#type").val() == "用户") {
         $.ajax({
@@ -114,12 +143,131 @@ By reading the restful api from back-end, make sure the json format and use diff
       }
     });
   });
-</script>
 ```
 
 ---
+<br>
+
 ## User
 
+### homepage
+Welcome page.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/5.png)
+
 ### balance
+Show the balance and transaction table of the user.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/6.png)
+
+The implementation of the transaction table or other tables just like below:
+
+```html
+<table class="table table-striped table-bordered table-hover" id="transaction-table">
+    <thead>
+        <tr>
+            <th>交易时间</th>
+            <th>交易类型</th>
+            <th>交易金额</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="cloneTr">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+```
 
 
+```js
+$.ajax({
+    type: "POST",
+    url: "/card/getRecord",
+    data: {
+      card_id: 654321,
+    },
+    dataType: "json",
+    success: function(data){
+        var tr = $("#cloneTr");
+        $.each(data.data, function(index, item){
+            //克隆tr，每次遍历可以产生新的tr
+            var clonedTr = tr.clone();
+            var _index = index;
+
+            //循环遍历cloneTr的每一个td元素，并赋值
+            clonedTr.children("td").each(function(inner_index){
+
+                //根据索引为每一个td赋值
+                switch(inner_index){
+                    case(0):
+                        $(this).html(item.time);
+                        break;
+                    case(1):
+                        $(this).html(item.type);
+                        break;
+                    case(2):
+                        if (item.recordAdd == 0) {
+                            $(this).html("-" + item.recordMinus);
+                        }else{
+                            $(this).html(item.recordAdd);
+                        }
+                        break;
+                } //end switch
+            }); //end children.each
+            //把克隆好的tr追加到原来的tr后面
+            clonedTr.insertAfter(tr);
+        }); //end $each
+        $("#cloneTr").hide(); //隐藏id=clone的tr，因为该tr中的td没有数据
+        $("#transaction-table").show();
+    },
+    error: function(jqXHR){
+      alert("发生错误：" + jqXHR.status);
+    }
+});
+```
+
+### recharge
+Input student number and recharge amount to recharge.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/10.png)
+
+### consume
+Input student number and consume amount for a simulation consumption.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/14.png)
+
+### report_lose
+Input student number to report lose.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/15.png)
+
+### schedule
+Show the schedule of the user.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/16.png)
+
+### research_book
+Input book name to research book or input book number to borrow book.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/19.png)
+
+### borrowed_book
+Show the amount of the borrowed book of the user and borrow-table for details.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/20.png)
+
+---
+<br>
+
+## Admin

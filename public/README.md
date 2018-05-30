@@ -284,3 +284,9 @@ Input user information to create card.
 <br>
 ![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/26.png)
 
+### patch_card
+Input card id to patch_card
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/26.png)
+

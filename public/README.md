@@ -288,5 +288,22 @@ Input user information to create card.
 Input card id to patch_card
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/26.png)
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/28.png)
 
+### recharge
+Input student number and recharge amount to recharge for students.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/32.png)
+
+## consume
+Select consume type, consume number and consume amount to consume for students.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/36.png)
+
+## statistics
+Input student number to search information of the student.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/39.png)

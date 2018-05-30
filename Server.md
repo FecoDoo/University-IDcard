@@ -19,6 +19,25 @@ This is a RESTful API which is specially developed for Simple University ID Card
 
 ## Admin Module
 
+### Administrator login API
+
+* url Request(POST) : localhost/admin/login
+* post parameter
+    
+    | user_id | user_pwd |
+    | :-: | :-: |
+    | int | string|
+    | Admin account | password |
+
+* Return data references:
+```json
+{
+    "code": 200,
+    "msg": "Success",
+    "data": []
+}
+```
+
 ### register()
 * get student ID and check if it already exits, if not, then insert the imformation into database
 * url Request(POST):*localhost/admin/register*

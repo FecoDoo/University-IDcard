@@ -80,8 +80,14 @@ class User extends Common
     {
         $this->datas = $this->params;
         $res = Db::table('idcard_student')->where('Sno',$this->datas['user_id'])->find();
-        unset($res['Spwd']);
-        $this->returnMsg(200,'Success',$res);
+        if (empty($res))
+        {
+            $this->returnMsg(400, 'Failed');
+        } else {
+            unset($res['Spwd']);
+            $this->returnMsg(200,'Success',$res);
+        }
+        
     }
     /* ---------------- 执行方法  ---------------- */
 
@@ -117,7 +123,6 @@ class User extends Common
     private function matchCard()
     {
         $res =  Db::table('idcard_card')->where('Cno', $this->datas['card_id'])->find();
-        Session::set($this->datas['user_id'],'thinkphp');
         if (!empty($res)) {
             return;
         } else {

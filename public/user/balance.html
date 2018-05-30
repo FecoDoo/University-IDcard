@@ -66,13 +66,16 @@
                         <a href="consume.html"><i class="fa fa-jpy"></i>消费</a>
                     </li>
                     <li>
-                        <a href="reportlose.html"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
+                        <a href="report_lose.html"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
                     </li>
                     <li>
                         <a href="schedule.html"><i class="fa fa-dashboard"></i>课表</a>
                     </li>
                     <li>
-                        <a href="book.html" id="create-card"><i class="fa fa-book"></i>图书借阅</a>
+                        <a href="search_book.html"><i class="fa fa-book"></i>图书查询</a>
+                    </li>
+                    <li>
+                        <a href="borrowed_book.html"><i class="fa fa-book"></i>借阅查询</a>
                     </li>
                 </ul>
             </div>
@@ -104,7 +107,7 @@
                         <div class="panel panel-primary text-center no-boder bg-color-red">
                             <div class="panel-body">
                                 <i class="fa fa-money fa-5x"></i>
-                                <h3 id="balance"></h3>
+                                <h3 id="balance">0</h3>
                             </div>
                             <div class="panel-footer back-footer-red">
                                 余额
@@ -187,14 +190,12 @@
                 type: "POST",
                 url: "/card/getCharge",
                 data: {
-                  card_id: 1,
+                  card_id: 654321,
                 },
                 dataType: "json",
                 success: function(data){
                     if (data.code == 200) {
                         $("#balance").text(data.data);
-                    }else{
-                        alert("余额获取失败！")
                     }
                 },
                 error: function(jqXHR){
@@ -206,7 +207,7 @@
                 type: "POST",
                 url: "/card/getRecord",
                 data: {
-                  card_id: 1,
+                  card_id: 654321,
                 },
                 dataType: "json",
                 success: function(data){

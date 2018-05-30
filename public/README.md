@@ -1,37 +1,57 @@
-<!DOCTYPE html>
-<html lang="en" >
+# Front-end doc
 
-<head>
-  <meta charset="UTF-8">
-  <title>校园卡管理系统登录</title>
-  <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+---
+## Doc Menu
 
-<body>
-<div class="container">
-  <div class="info">
-    <h1>浙江工业大学</h1><h1>校园卡管理系统</h1><span>Made by <a href="http://andytran.me">1603</a></span>
-  </div>
-</div>
-<div class="form">
-  <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
-    <div class="login-form">
-      <div class="form-group">
-        <select id="type" class="form-control">
-          <option>用户</option>
-          <option>管理员</option>
-        </select>
-      </div>
-      <input id="number" type="text" placeholder="用户名"/>
-      <input id="password" type="password" placeholder="密码"/>
-      <div id="warning"></div>
-      <button id="login">登录</button>
-    </div>
-</div>
+[TOC]
 
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+---
+## Project Structure
+
+~~~
+├─admin						admin html files
+├─assets					css/js/fonts for admin and user page
+│  ├─css					css files including bootstrap, font-awesome and custom-style
+│  ├─font-awesome			fonts form font-awesome
+│  │  └─fonts
+│  ├─fonts					fonts from glyphicons
+│  └─js						js files including dataTables, morris, bootstrap, custom-style
+│      ├─dataTables			js files for creating data table
+│      └─morris				js files for creating morris charts
+├─css						css files for index page
+├─sass						sass files for style
+├─static					css/js/fonts for index page
+└─user						user html files
+~~~
+
+---
+## Import css/js framework and library
+
+### css framework:
+* Bootstrap.css
+
+### js library:
+* jQuery.js
+
+### other css/js files:
+* font-awesome.css
+
+* morris.js
+
+---
+## Custom css/js file
+* custom-styles.css
+
+* custom-scripts.js
+
+---
+## Login
+
+> A login page for both user and administrator<br>
+
+By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
+
+```js
 <script type="text/javascript">
   $(document).ready(function(){
     $("#login").click(function(){
@@ -95,6 +115,11 @@
     });
   });
 </script>
-</body>
+```
 
-</html>
+---
+## User
+
+### balance
+
+

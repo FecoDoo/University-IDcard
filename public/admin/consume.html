@@ -88,12 +88,6 @@
                 <div class="row">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label for="number" class="col-sm-1 control-label">消费学号</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" id="number" placeholder="请输入学号">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="consume_type" class="col-sm-1 control-label">消费类型</label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="consume_type">
@@ -102,6 +96,12 @@
                                     <option>电费</option>
                                     <option>水费</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="number" class="col-sm-1 control-label">消费学号</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="number" placeholder="请输入学号">
                             </div>
                         </div>
                         <div class="form-group">
@@ -141,6 +141,7 @@
                     type: "POST",
                     url: "/card/consume",
                     data: {
+                      type: $("#consume_type").val(),
                       card_id: $("#number").val(),
                       consume_number: $("#amount").val()
                     },

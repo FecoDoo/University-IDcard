@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="homepage.html">个人信息</a>
+                <a class="navbar-brand" href="homepage.html">校园卡管理系统(用户)</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
@@ -54,7 +54,7 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a href="homepage.html" class="active-menu"><i class="fa fa-home"></i>主页</a>
+                        <a href="homepage.html"><i class="fa fa-home"></i>主页</a>
                     </li>
                     <li>
                         <a href="balance.html"><i class="fa fa-money"></i></i>余额</a>
@@ -66,10 +66,16 @@
                         <a href="consume.html"><i class="fa fa-jpy"></i>消费</a>
                     </li>
                     <li>
+                        <a href="report_lose.html" class="active-menu"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
+                    </li>
+                    <li>
                         <a href="schedule.html"><i class="fa fa-dashboard"></i>课表</a>
                     </li>
                     <li>
-                        <a href="book.html" id="create-card"><i class="fa fa-book"></i>图书借阅</a>
+                        <a href="search_book.html"><i class="fa fa-book"></i>图书查询</a>
+                    </li>
+                    <li>
+                        <a href="borrowed_book.html"><i class="fa fa-book"></i>借阅查询</a>
                     </li>
                 </ul>
             </div>
@@ -80,50 +86,72 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            主页
+                            挂失
                         </h1>
                     </div>
                 </div>
-                <div class="row">
-                    <h3 id="welcome">欢迎使用校园卡管理系统!</h3>
-                </div>
                 <!-- /. ROW  -->
+                <div class="row">
+                    <div class="form-horizontal col-sm-12">
+                        <div class="form-group">
+                            <label for="number" class="col-sm-1 control-label">挂失学号</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="number" placeholder="请输入挂失学号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <div id="warning"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <button class="btn btn-primary" id="reportlose">挂失</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
-    <div class="modal" id="mymodal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">模态弹出窗标题</h4>
-                </div>
-                <div class="modal-body">
-                    <p>模态弹出窗主体内容</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="../assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="../assets/js/jquery.metisMenu.js"></script>
-    <!-- Morris Chart Js -->
-    <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="../assets/js/morris/morris.js"></script>
-    <!-- Custom Js -->
-    <script src="../assets/js/custom-scripts.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#reportlose").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/user/reportLoss",
+                    data: {
+                      card_id: $("#number").val(),
+                    },
+                    dataType: "json",
+                    success: function(data){
+                      if (data.code == 200) {
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-success");
+                        $("#warning").html(data.msg);
+                      }else{
+                        $("#warning").removeClass();
+                        $("#warning").addClass("alert alert-danger");
+                        $("#warning").html(data.msg);
+                      }
+                    },
+                    error: function(jqXHR){
+                      $("#warning").removeClass();
+                      $("#warning").addClass("alert alert-danger");
+                      $("#warning").html("发生错误：" + jqXHR.status);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

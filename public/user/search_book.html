@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>校园卡管理系统(用户)</title>
+    <!-- Bootstrap Styles-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="homepage.html">校园卡管理系统(用户)</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>个人信息</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i>退出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="homepage.html"><i class="fa fa-home"></i>主页</a>
+                    </li>
+                    <li>
+                        <a href="balance.html"><i class="fa fa-money"></i></i>余额</a>
+                    </li>
+                    <li>
+                        <a href="recharge.html"><i class="fa fa-jpy"></i>充值</a>
+                    </li>
+                    <li>
+                        <a href="consume.html"><i class="fa fa-jpy"></i>消费</a>
+                    </li>
+                    <li>
+                        <a href="report_lose.html"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
+                    </li>
+                    <li>
+                        <a href="schedule.html"><i class="fa fa-dashboard"></i>课表</a>
+                    </li>
+                    <li>
+                        <a href="search_book.html" class="active-menu"><i class="fa fa-book"></i>图书查询</a>
+                    </li>
+                    <li>
+                        <a href="borrowed_book.html"><i class="fa fa-book"></i>借阅查询</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            图书查询
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="form-horizontal col-sm-12">
+                        <div class="form-group">
+                            <label for="book_name" class="col-sm-1 control-label">书名查询</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="book_name" placeholder="请输入要查询的书名">
+                            </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-primary" id="search_book">查询</button>
+                            </div>
+                            <label for="book_number" class="col-sm-1 control-label">借阅</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="book_number" placeholder="请输入要借阅的书编号">
+                            </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-primary" id="borrow_book">借阅</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-1">
+                                <div id="warning"></div>
+                            </div>
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <div id="warning2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="panel panel-default" id="book_table">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="transaction-table">
+                                        <thead>
+                                            <tr>
+                                                <th>编号</th>
+                                                <th>书名</th>
+                                                <th>出版社</th>
+                                                <th>版本</th>
+                                                <th>类型</th>
+                                                <th>是否可借</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="cloneTr">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /. ROW -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#search_book").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/book/searchBook",
+                    data: {
+                      book_name: $("#book_name").val(),
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        if (data.code == 200) {
+                            var tr = $("#cloneTr");
+                            $.each(data.data, function(index, item){
+                                //克隆tr，每次遍历可以产生新的tr
+                                var clonedTr = tr.clone();
+                                var _index = index;
+
+                                //循环遍历cloneTr的每一个td元素，并赋值
+                                clonedTr.children("td").each(function(inner_index){
+
+                                    //根据索引为每一个td赋值
+                                    switch(inner_index){
+                                        case(0):
+                                            $(this).html(item.Bno);
+                                            break;
+                                        case(1):
+                                            $(this).html(item.Bname);
+                                            break;
+                                        case(2):
+                                            $(this).html(item.Publisher);
+                                            break;
+                                        case(3):
+                                            $(this).html(item.Version);
+                                            break;
+                                        case(4):
+                                            $(this).html(item.Type);
+                                            break;
+                                        case(5):
+                                            if (item.Status == 1) {
+                                                $(this).html("是");
+                                            }else{
+                                                $(this).html("否");
+                                            }
+                                            break;
+                                    } //end switch
+                                }); //end children.each
+                                //把克隆好的tr追加到原来的tr后面
+                                clonedTr.insertAfter(tr);
+                            }); //end $each
+                            $("#cloneTr").hide(); //隐藏id=clone的tr，因为该tr中的td没有数据
+                            $("#transaction-table").show();
+
+                            $("#warning").removeClass();
+                            $("#warning").addClass("alert alert-success");
+                            $("#warning").html(data.msg);
+                        }else{
+                            $("#warning").removeClass();
+                            $("#warning").addClass("alert alert-danger");
+                            $("#warning").html(data.msg);
+                        }
+                    },
+                    error: function(jqXHR){
+                      $("#warning").removeClass();
+                      $("#warning").addClass("alert alert-danger");
+                      $("#warning").html("发生错误：" + jqXHR.status);
+                    }
+                });
+            });
+            $("#borrow_book").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/book/borrow",
+                    data: {
+                      book_id: $("#book_number").val(),
+                      user_id: 654321
+                    },
+                    dataType: "json",
+                    success: function(data){
+                      if (data.code == 200) {
+                        $("#warning2").removeClass();
+                        $("#warning2").addClass("alert alert-success");
+                        $("#warning2").html(data.msg);
+                      }else{
+                        $("#warning2").removeClass();
+                        $("#warning2").addClass("alert alert-danger");
+                        $("#warning2").html(data.msg);
+                      }
+                    },
+                    error: function(jqXHR){
+                      $("#warning2").removeClass();
+                      $("#warning2").addClass("alert alert-danger");
+                      $("#warning2").html("发生错误：" + jqXHR.status);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -271,3 +271,16 @@ Show the amount of the borrowed book of the user and borrow-table for details.
 <br>
 
 ## Admin
+
+### homepage
+Welcome page.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/5.png)
+
+### create_card
+Input user information to create card.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/26.png)
+

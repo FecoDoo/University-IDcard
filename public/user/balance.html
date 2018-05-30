@@ -120,7 +120,7 @@
                     <div class="col-md-3">
                         <div id="consume-analysis-panel" class="panel panel-default">
                             <div class="panel-heading">
-                                最近七天消费分析
+                                消费分析
                             </div>
                             <div class="panel-body">
                                 <div id="morris-donut-chart"></div>
@@ -130,7 +130,7 @@
                     <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <div>最近七天交易情况</div>
+                                <div>交易情况</div>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-line-chart"></div>
@@ -177,20 +177,13 @@
     <script src="../assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <!-- <script src="../assets/js/jquery.metisMenu.js"></script> -->
-    <!-- Morris Chart Js -->
-    <!-- <script src="../assets/js/morris/raphael-2.1.0.min.js"></script> -->
-    <!-- <script src="../assets/js/morris/morris.js"></script> -->
-    <!-- Custom Js -->
-    <!-- <script src="../assets/js/custom-scripts.js"></script> -->
     <script type="text/javascript">
         $(document).ready(function(){
             $.ajax({
                 type: "POST",
                 url: "/card/getCharge",
                 data: {
-                  card_id: 654321,
+                  card_id: 123456,
                 },
                 dataType: "json",
                 success: function(data){
@@ -207,7 +200,7 @@
                 type: "POST",
                 url: "/card/getRecord",
                 data: {
-                  card_id: 654321,
+                  card_id: 123456,
                 },
                 dataType: "json",
                 success: function(data){
@@ -249,6 +242,14 @@
             });
         });
     </script>
+    <!-- Metis Menu Js -->
+    <script src="../assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../assets/js/morris/morris.js"></script>
+    <!-- Custom Js -->
+    <!-- <script src="../assets/js/custom-scripts.js"></script> -->
+
 </body>
 
 </html>

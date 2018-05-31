@@ -267,6 +267,19 @@ Show the amount of the borrowed book of the user and borrow-table for details.
 <br>
 ![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/20.png)
 
+### profile
+Show the information of the user.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/1.png)
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/2.png)
+
+### password_change
+Input uesr number, old password and new password to change password.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/3.png)
+
 ---
 <br>
 
@@ -307,3 +320,9 @@ Input student number to search information of the student.
 <br>
 <br>
 ![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/39.png)
+
+## password_find
+Input student number to find his password.
+<br>
+<br>
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/40.png)

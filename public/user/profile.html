@@ -54,28 +54,13 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a href="homepage.html"><i class="fa fa-home"></i>主页</a>
+                        <a href="profile.html" class="active-menu"><i class="fa fa-user fa-fw"></i>个人信息</a>
                     </li>
                     <li>
-                        <a href="balance.html"><i class="fa fa-money"></i></i>余额</a>
+                        <a href="password_change.html"><i class="fa fa-gear fa-fw"></i></i>修改密码</a>
                     </li>
                     <li>
-                        <a href="recharge.html" class="active-menu"><i class="fa fa-jpy"></i>充值</a>
-                    </li>
-                    <li>
-                        <a href="consume.html"><i class="fa fa-jpy"></i>消费</a>
-                    </li>
-                    <li>
-                        <a href="report_lose.html"><i class="glyphicon glyphicon-credit-card"></i>挂失</a>
-                    </li>
-                    <li>
-                        <a href="schedule.html"><i class="fa fa-dashboard"></i>课表</a>
-                    </li>
-                    <li>
-                        <a href="search_book.html"><i class="fa fa-book"></i>图书查询</a>
-                    </li>
-                    <li>
-                        <a href="borrowed_book.html"><i class="fa fa-book"></i>借阅查询</a>
+                        <a href="../index.html"><i class="fa fa-sign-out fa-fw"></i>退出</a>
                     </li>
                 </ul>
             </div>
@@ -86,37 +71,40 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            充值
+                            个人信息
                         </h1>
                     </div>
                 </div>
-                <!-- /. ROW  -->
                 <div class="row">
-                    <div class="form-horizontal col-sm-12">
-                        <div class="form-group">
-                            <label for="number" class="col-sm-1 control-label">充值学号</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" id="number" placeholder="请输入学号">
+                    <div id="research-result" class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                个人信息
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="amount" class="col-sm-1 control-label">充值金额</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" id="amount" placeholder="请输入充值金额">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-3 col-sm-offset-1">
-                                <div id="warning"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-4 col-sm-offset-1">
-                                <button class="btn btn-primary" id="recharge">充值</button>
+                            <div class="panel-body">
+                                <div class="form-horizontal col-sm-12">
+                                    <div class="form-group">
+                                        <label for="number" class="col-sm-2 control-label" style="color:#428bca">学号</label>
+                                        <label id="number" class="col-sm-2 control-label"></label>
+                                        <label for="name" class="col-sm-2 control-label" style="color:#428bca">姓名</label>
+                                        <label id="name" class="col-sm-2 control-label"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="college" class="col-sm-2 control-label" style="color:#428bca">学院</label>
+                                        <label id="college" class="col-sm-2 control-label"></label>
+                                        <label for="sex" class="col-sm-2 control-label" style="color:#428bca">性别</label>
+                                        <label id="sex" class="col-sm-2 control-label"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="birthday" class="col-sm-2 control-label" style="color:#428bca">生日</label>
+                                        <label id="birthday" class="col-sm-2 control-label"></label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- /. ROW  -->
             </div>
             <!-- /. PAGE INNER  -->
         </div>
@@ -130,32 +118,36 @@
     <script src="../assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#recharge").click(function(){
-                $.ajax({
-                    type: "POST",
-                    url: "/card/charge",
-                    data: {
-                      card_id: $("#number").val(),
-                      charge_number: $("#amount").val()
-                    },
-                    dataType: "json",
-                    success: function(data){
-                      if (data.code == 200) {
-                        $("#warning").removeClass();
-                        $("#warning").addClass("alert alert-success");
-                        $("#warning").html(data.msg);
-                      }else{
-                        $("#warning").removeClass();
-                        $("#warning").addClass("alert alert-danger");
-                        $("#warning").html(data.msg);
-                      }
-                    },
-                    error: function(jqXHR){
-                      $("#warning").removeClass();
-                      $("#warning").addClass("alert alert-danger");
-                      $("#warning").html("发生错误：" + jqXHR.status);
-                    }
-                });
+            $.ajax({
+                type: "POST",
+                url: "/user/getInfo",
+                data: {
+                  user_id: 123456,
+                },
+                dataType: "json",
+                success: function(data){
+                  if (data.code == 200) {
+                    $("#warning").removeClass();
+                    $("#warning").addClass("alert alert-success");
+                    $("#warning").html(data.msg);
+
+                    $("#number").html(data.data.Sno);
+                    $("#name").html(data.data.Sname);
+                    $("#password").html(data.data.Spwd);
+                    $("#college").html(data.data.Sdpt);
+                    $("#sex").html(data.data.Ssex);
+                    $("#birthday").html(data.data.Sbirth);
+                  }else{
+                    $("#warning").removeClass();
+                    $("#warning").addClass("alert alert-danger");
+                    $("#warning").html(data.msg);
+                  }
+                },
+                error: function(jqXHR){
+                  $("#warning").removeClass();
+                  $("#warning").addClass("alert alert-danger");
+                  $("#warning").html("发生错误：" + jqXHR.status);
+                }
             });
         });
     </script>

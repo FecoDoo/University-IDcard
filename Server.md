@@ -1,6 +1,10 @@
 # API Server Developing Document
 
 ---
+## Doc Menu
+[TOC]
+
+---
 ## Overview
 This is a RESTful API which is specially developed for Simple University ID Card Management System. Based on ThinkPHP 5.1 MVC Architecture
 
@@ -15,7 +19,78 @@ This is a RESTful API which is specially developed for Simple University ID Card
 * For definitions of specific url parameters, consult the **route.php** file in the **config** directory.
 
 ---
-## Items
+## Stucture
+
+```tree
+├─application         
+│  ├─api              
+│  │  └─controller    
+│  └─index            
+│      └─controller   
+├─config              
+├─extend              
+├─images              
+│  ├─admin            
+│  ├─login            
+│  └─user             
+├─public                       
+├─route               
+├─runtime             
+│  └─log              
+│      └─201805       
+├─thinkphp            
+│  ├─lang             
+│  ├─library          
+│  │  ├─think         
+│  │  │  ├─cache      
+│  │  │  │  └─driver  
+│  │  │  ├─config     
+│  │  │  │  └─driver  
+│  │  │  ├─console    
+│  │  │  │  ├─bin     
+│  │  │  │  ├─command 
+│  │  │  │  │  ├─make 
+│  │  │  │  │  │  └─st
+│  │  │  │  │  └─optim
+│  │  │  │  ├─input   
+│  │  │  │  └─output  
+│  │  │  │      ├─desc
+│  │  │  │      ├─driv
+│  │  │  │      ├─form
+│  │  │  │      └─ques
+│  │  │  ├─db         
+│  │  │  │  ├─builder 
+│  │  │  │  ├─connecto
+│  │  │  │  └─exceptio
+│  │  │  ├─debug      
+│  │  │  ├─exception  
+│  │  │  ├─facade     
+│  │  │  ├─log        
+│  │  │  │  └─driver  
+│  │  │  ├─model      
+│  │  │  │  ├─concern 
+│  │  │  │  └─relation
+│  │  │  ├─paginator  
+│  │  │  │  └─driver  
+│  │  │  ├─process    
+│  │  │  │  ├─exceptio
+│  │  │  │  └─pipes   
+│  │  │  ├─response   
+│  │  │  ├─route      
+│  │  │  │  └─dispatch
+│  │  │  ├─session    
+│  │  │  │  └─driver  
+│  │  │  ├─template   
+│  │  │  │  ├─driver  
+│  │  │  │  └─taglib  
+│  │  │  ├─validate   
+│  │  │  └─view       
+│  │  │      └─driver 
+│  │  └─traits        
+│  │      └─controller
+│  └─tpl
+└─vendor
+```
 
 ## Admin Module
 

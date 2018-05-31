@@ -1,6 +1,11 @@
 # Use ThinkPHP 5.0 create restful api
 
 ---
+## Doc Menu
+
+[TOC]
+
+---
 ## API编写前的相关配置(参数过滤)
 * 在config/route.php中配置路由：实现api二级域名访问指定模块; 配置域名参数简写风格
 * 在api模块的Common.php中配置公共方法：
@@ -9,6 +14,80 @@
 
 * 在调用的控制器方法内(例如：User)，继承Common类
 * 涉及具体url参数的定义，可以查阅config目录下route.php文件
+
+---
+## Stucture
+
+```tree
+├─application         
+│  ├─api              
+│  │  └─controller    
+│  └─index            
+│      └─controller   
+├─config              
+├─extend              
+├─images              
+│  ├─admin            
+│  ├─login            
+│  └─user             
+├─public                       
+├─route               
+├─runtime             
+│  └─log              
+│      └─201805       
+├─thinkphp            
+│  ├─lang             
+│  ├─library          
+│  │  ├─think         
+│  │  │  ├─cache      
+│  │  │  │  └─driver  
+│  │  │  ├─config     
+│  │  │  │  └─driver  
+│  │  │  ├─console    
+│  │  │  │  ├─bin     
+│  │  │  │  ├─command 
+│  │  │  │  │  ├─make 
+│  │  │  │  │  │  └─st
+│  │  │  │  │  └─optim
+│  │  │  │  ├─input   
+│  │  │  │  └─output  
+│  │  │  │      ├─desc
+│  │  │  │      ├─driv
+│  │  │  │      ├─form
+│  │  │  │      └─ques
+│  │  │  ├─db         
+│  │  │  │  ├─builder 
+│  │  │  │  ├─connecto
+│  │  │  │  └─exceptio
+│  │  │  ├─debug      
+│  │  │  ├─exception  
+│  │  │  ├─facade     
+│  │  │  ├─log        
+│  │  │  │  └─driver  
+│  │  │  ├─model      
+│  │  │  │  ├─concern 
+│  │  │  │  └─relation
+│  │  │  ├─paginator  
+│  │  │  │  └─driver  
+│  │  │  ├─process    
+│  │  │  │  ├─exceptio
+│  │  │  │  └─pipes   
+│  │  │  ├─response   
+│  │  │  ├─route      
+│  │  │  │  └─dispatch
+│  │  │  ├─session    
+│  │  │  │  └─driver  
+│  │  │  ├─template   
+│  │  │  │  ├─driver  
+│  │  │  │  └─taglib  
+│  │  │  ├─validate   
+│  │  │  └─view       
+│  │  │      └─driver 
+│  │  └─traits        
+│  │      └─controller
+│  └─tpl
+└─vendor
+```
 
 ---
 ## Admin模块

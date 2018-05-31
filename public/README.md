@@ -78,6 +78,7 @@ Bootstrap/jQuery/Ajax University-IDCard system for user and administrator
 
 ## Login
 
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/login/1.png)
 
 > By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
 

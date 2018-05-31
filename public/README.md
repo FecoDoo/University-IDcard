@@ -78,7 +78,7 @@ Bootstrap/jQuery/Ajax University-IDCard system for user and administrator
 
 ## Login
 
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/login/4.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/login/4.png)
 
 >By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
 
@@ -154,13 +154,13 @@ Bootstrap/jQuery/Ajax University-IDCard system for user and administrator
 Welcome page.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/5.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/5.png)
 
 ### balance
 Show the balance and transaction table of the user.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/6.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/6.png)
 
 The implementation of the transaction table or other tables just like below:
 
@@ -235,50 +235,50 @@ $.ajax({
 Input student number and recharge amount to recharge.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/10.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/10.png)
 
 ### consume
 Input student number and consume amount for a simulation consumption.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/14.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/14.png)
 
 ### report_lose
 Input student number to report lose.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/15.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/15.png)
 
 ### schedule
 Show the schedule of the user.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/16.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/16.png)
 
 ### research_book
 Input book name to research book or input book number to borrow book.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/19.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/19.png)
 
 ### borrowed_book
 Show the amount of the borrowed book of the user and borrow-table for details.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/20.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/20.png)
 
 ### profile
 Show the information of the user.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/1.png)
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/2.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/1.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/2.png)
 
 ### password_change
 Input uesr number, old password and new password to change password.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/user/3.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/user/3.png)
 
 ---
 <br>
@@ -289,40 +289,40 @@ Input uesr number, old password and new password to change password.
 Welcome page.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/5.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/5.png)
 
 ### create_card
 Input user information to create card.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/26.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/26.png)
 
 ### patch_card
 Input card id to patch_card
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/28.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/28.png)
 
 ### recharge
 Input student number and recharge amount to recharge for students.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/32.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/32.png)
 
 ## consume
 Select consume type, consume number and consume amount to consume for students.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/36.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/36.png)
 
 ## statistics
 Input student number to search information of the student.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/39.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/39.png)
 
 ## password_find
 Input student number to find his password.
 <br>
 <br>
-![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/40.png)
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/40.png)

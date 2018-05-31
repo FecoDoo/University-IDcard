@@ -78,9 +78,13 @@ Bootstrap/jQuery/Ajax University-IDCard system for user and administrator
 
 ## Login
 
+<<<<<<< HEAD
 ![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/login/4.png)
+=======
+![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/login/1.png)
+>>>>>>> 83f8e50991aa53f8728574ba2967fa0e329e67d6
 
->By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
+> By reading the restful api from back-end, make sure the json format and use different ajax to request logining depending on the login type. According to the returned message, show diffenent messages below. If login successfully, jump to the relevant homepage. This or other pages' format of ajax just like below:
 
 ```js
   $(document).ready(function(){
@@ -325,4 +329,8 @@ Input student number to search information of the student.
 Input student number to find his password.
 <br>
 <br>
+<<<<<<< HEAD
 ![image](https://raw.githubusercontent.com/FecoDoo/University-IDcard/master/images/admin/40.png)
+=======
+![image](http://github.com/Fecodoo/University-IDcard/raw/master/images/admin/40.png)
+>>>>>>> 83f8e50991aa53f8728574ba2967fa0e329e67d6

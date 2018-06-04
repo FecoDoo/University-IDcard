@@ -92,6 +92,7 @@ This is a RESTful API which is specially developed for Simple University ID Card
 └─vendor
 ```
 
+---
 ## Admin Module
 
 ### Administrator login API
